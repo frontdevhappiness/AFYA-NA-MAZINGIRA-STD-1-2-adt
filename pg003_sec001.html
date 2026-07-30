@@ -10,6 +10,46 @@
     <link href="./content/tailwind_output.css" rel="stylesheet">
     <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./assets/fonts.css" rel="stylesheet">
+    <style>
+      .toc-entry {
+        align-items: flex-end;
+        background-image: radial-gradient(circle, #404040 1.5px, transparent 1.7px);
+        background-position: left calc(100% - 0.55rem);
+        background-repeat: repeat-x;
+        background-size: 8px 4px;
+        display: flex;
+        font-size: 0 !important;
+        width: 100%;
+      }
+
+      .toc-entry::before,
+      .toc-entry::after {
+        background: #fff;
+        color: #262626;
+        font-size: 1.5rem;
+        line-height: 1.5;
+      }
+
+      .toc-entry::before {
+        content: attr(data-toc-title);
+        padding-right: 0.75rem;
+      }
+
+      .toc-entry::after {
+        content: attr(data-toc-page);
+        margin-left: auto;
+        min-width: 3rem;
+        padding-left: 0.75rem;
+        text-align: right;
+      }
+
+      @media (max-width: 640px) {
+        .toc-entry::before,
+        .toc-entry::after {
+          font-size: 1.125rem;
+        }
+      }
+    </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center">
@@ -26,73 +66,41 @@
     </div>
 
     <div class="relative z-10 space-y-7 max-lg:space-y-6 max-sm:space-y-5">
-      <p data-id="pg003_n0005" class="adt-body flex items-center gap-3 max-sm:grid max-sm:grid-cols-[1fr_auto] max-sm:gap-2">
-        <span class="shrink-0 inline-block bg-gradient-to-b from-fuchsia-500 via-pink-500 to-fuchsia-900 text-white px-4 py-2 rounded-r-[1.8rem] shadow-md w-[16rem] max-lg:w-[13rem] max-sm:w-full font-bold">Shukurani</span>
-        <span aria-hidden="true" class="flex-1 border-b-4 border-dotted border-neutral-700 mb-1 max-sm:hidden"></span>
-        <span class="shrink-0 text-neutral-800">iv</span>
-      </p>
+      <p data-id="pg003_n0005" data-toc-title="Shukurani" data-toc-page="iv" role="group" aria-label="Shukurani, ukurasa iv" class="adt-body toc-entry">Shukurani iv</p>
 
-      <p data-id="pg003_n0007" class="adt-body flex items-center gap-3 max-sm:grid max-sm:grid-cols-[1fr_auto] max-sm:gap-2">
-        <span class="shrink-0 inline-block bg-gradient-to-b from-fuchsia-500 via-pink-500 to-fuchsia-900 text-white px-4 py-2 rounded-r-[1.8rem] shadow-md w-[16rem] max-lg:w-[13rem] max-sm:w-full font-bold">Utangulizi</span>
-        <span aria-hidden="true" class="flex-1 border-b-4 border-dotted border-neutral-700 mb-1 max-sm:hidden"></span>
-        <span class="shrink-0 text-neutral-800">vi</span>
-      </p>
+      <p data-id="pg003_n0007" data-toc-title="Utangulizi" data-toc-page="vi" role="group" aria-label="Utangulizi, ukurasa vi" class="adt-body toc-entry">Utangulizi vi</p>
 
       <div class="space-y-2 max-sm:space-y-2">
         <div class="inline-block bg-gradient-to-b from-fuchsia-500 via-pink-500 to-fuchsia-900 text-white px-4 py-2 rounded-r-[1.8rem] shadow-md w-[16rem] max-lg:w-[13rem] max-sm:w-full">
           <p data-id="pg003_n0009" class="adt-h2 font-bold">Sura ya Kwanza</p>
         </div>
-        <p data-id="pg003_n0010" class="adt-body flex items-end gap-3 text-neutral-800">
-          <span class="shrink-0">Usafi wa mwili</span>
-          <span aria-hidden="true" class="flex-1 border-b-4 border-dotted border-neutral-700 mb-2"></span>
-          <span class="shrink-0">1</span>
-        </p>
+        <p data-id="pg003_n0010" data-toc-title="Usafi wa mwili" data-toc-page="1" role="group" aria-label="Usafi wa mwili, ukurasa 1" class="adt-body toc-entry">Usafi wa mwili 1</p>
       </div>
 
       <div class="space-y-2 max-sm:space-y-2">
         <div class="inline-block bg-gradient-to-b from-fuchsia-500 via-pink-500 to-fuchsia-900 text-white px-4 py-2 rounded-r-[1.8rem] shadow-md w-[16rem] max-lg:w-[13rem] max-sm:w-full">
           <p data-id="pg003_n0012" class="adt-h2 font-bold">Sura ya Pili</p>
         </div>
-        <p data-id="pg003_n0013" class="adt-body flex items-end gap-3 text-neutral-800">
-          <span class="shrink-0">Kutunza mavazi</span>
-          <span aria-hidden="true" class="flex-1 border-b-4 border-dotted border-neutral-700 mb-2"></span>
-          <span class="shrink-0">34</span>
-        </p>
+        <p data-id="pg003_n0013" data-toc-title="Kutunza mavazi" data-toc-page="34" role="group" aria-label="Kutunza mavazi, ukurasa 34" class="adt-body toc-entry">Kutunza mavazi 34</p>
       </div>
 
       <div class="space-y-2 max-sm:space-y-2">
         <div class="inline-block bg-gradient-to-b from-fuchsia-500 via-pink-500 to-fuchsia-900 text-white px-4 py-2 rounded-r-[1.8rem] shadow-md w-[16rem] max-lg:w-[13rem] max-sm:w-full">
           <p data-id="pg003_n0015" class="adt-h2 font-bold">Sura ya Tatu</p>
         </div>
-        <p data-id="pg003_n0016" class="adt-body flex items-end gap-3 text-neutral-800">
-          <span class="shrink-0">Mazingira na vitu hatarishi</span>
-          <span aria-hidden="true" class="flex-1 border-b-4 border-dotted border-neutral-700 mb-2"></span>
-          <span class="shrink-0">48</span>
-        </p>
+        <p data-id="pg003_n0016" data-toc-title="Mazingira na vitu hatarishi" data-toc-page="48" role="group" aria-label="Mazingira na vitu hatarishi, ukurasa 48" class="adt-body toc-entry">Mazingira na vitu hatarishi 48</p>
       </div>
 
       <div class="space-y-2 max-sm:space-y-2">
         <div class="inline-block bg-gradient-to-b from-fuchsia-500 via-pink-500 to-fuchsia-900 text-white px-4 py-2 rounded-r-[1.8rem] shadow-md w-[16rem] max-lg:w-[13rem] max-sm:w-full">
           <p data-id="pg003_n0018" class="adt-h2 font-bold">Sura ya Nne</p>
         </div>
-        <p data-id="pg003_n0019" class="adt-body flex items-end gap-3 text-neutral-800">
-          <span class="shrink-0">Alama za usalama</span>
-          <span aria-hidden="true" class="flex-1 border-b-4 border-dotted border-neutral-700 mb-2"></span>
-          <span class="shrink-0">59</span>
-        </p>
+        <p data-id="pg003_n0019" data-toc-title="Alama za usalama" data-toc-page="59" role="group" aria-label="Alama za usalama, ukurasa 59" class="adt-body toc-entry">Alama za usalama 59</p>
       </div>
 
-      <p data-id="pg003_n0021" class="adt-body flex items-center gap-3 max-sm:grid max-sm:grid-cols-[1fr_auto] max-sm:gap-2">
-        <span class="shrink-0 inline-block bg-gradient-to-b from-fuchsia-500 via-pink-500 to-fuchsia-900 text-white px-4 py-2 rounded-r-[1.8rem] shadow-md w-[16rem] max-lg:w-[13rem] max-sm:w-full font-bold">Faharasa</span>
-        <span aria-hidden="true" class="flex-1 border-b-4 border-dotted border-neutral-700 mb-1 max-sm:hidden"></span>
-        <span class="shrink-0 text-neutral-800">65</span>
-      </p>
+      <p data-id="pg003_n0021" data-toc-title="Faharasa" data-toc-page="65" role="group" aria-label="Faharasa, ukurasa 65" class="adt-body toc-entry">Faharasa 65</p>
 
-      <p data-id="pg003_n0023" class="adt-body flex items-center gap-3 max-sm:grid max-sm:grid-cols-[1fr_auto] max-sm:gap-2">
-        <span class="shrink-0 inline-block bg-gradient-to-b from-fuchsia-500 via-pink-500 to-fuchsia-900 text-white px-4 py-2 rounded-r-[1.8rem] shadow-md w-[16rem] max-lg:w-[13rem] max-sm:w-full font-bold">Marejeleo</span>
-        <span aria-hidden="true" class="flex-1 border-b-4 border-dotted border-neutral-700 mb-1 max-sm:hidden"></span>
-        <span class="shrink-0 text-neutral-800">66</span>
-      </p>
+      <p data-id="pg003_n0023" data-toc-title="Marejeleo" data-toc-page="66" role="group" aria-label="Marejeleo, ukurasa 66" class="adt-body toc-entry">Marejeleo 66</p>
     </div>
 
     <div class="absolute left-1/4 bottom-20 max-lg:left-[38%] max-lg:bottom-14 max-sm:left-1/3 max-sm:bottom-8 pointer-events-none z-0 opacity-35">
