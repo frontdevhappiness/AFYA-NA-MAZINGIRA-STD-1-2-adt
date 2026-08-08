@@ -45,10 +45,6 @@
     "page_number": 3
   },
   {
-    "section_id": "qz001",
-    "href": "qz001.html"
-  },
-  {
     "section_id": "pg010_sec001",
     "href": "pg010_sec001.html",
     "page_number": 4
@@ -82,10 +78,6 @@
     "section_id": "pg013_sec001",
     "href": "pg013_sec001.html",
     "page_number": 7
-  },
-  {
-    "section_id": "qz002",
-    "href": "qz002.html"
   },
   {
     "section_id": "pg014_sec001",
@@ -126,10 +118,6 @@
     "section_id": "pg019_sec001",
     "href": "pg019_sec001.html",
     "page_number": 13
-  },
-  {
-    "section_id": "qz003",
-    "href": "qz003.html"
   },
   {
     "section_id": "pg020_sec001",
@@ -175,10 +163,6 @@
     "section_id": "pg027_sec001",
     "href": "pg027_sec001.html",
     "page_number": 21
-  },
-  {
-    "section_id": "qz004",
-    "href": "qz004.html"
   },
   {
     "section_id": "pg028_sec001",
@@ -256,10 +240,6 @@
     "page_number": 31
   },
   {
-    "section_id": "qz005",
-    "href": "qz005.html"
-  },
-  {
     "section_id": "pg038_sec001",
     "href": "pg038_sec001.html",
     "page_number": 32
@@ -300,10 +280,6 @@
     "page_number": 36
   },
   {
-    "section_id": "qz006",
-    "href": "qz006.html"
-  },
-  {
     "section_id": "pg043_sec001",
     "href": "pg043_sec001.html",
     "page_number": 37
@@ -327,10 +303,6 @@
     "section_id": "pg046_sec001",
     "href": "pg046_sec001.html",
     "page_number": 40
-  },
-  {
-    "section_id": "qz007",
-    "href": "qz007.html"
   },
   {
     "section_id": "pg047_sec001",
@@ -371,10 +343,6 @@
     "section_id": "pg052_sec001",
     "href": "pg052_sec001.html",
     "page_number": 46
-  },
-  {
-    "section_id": "qz008",
-    "href": "qz008.html"
   },
   {
     "section_id": "pg053_sec001",
@@ -435,10 +403,6 @@
     "section_id": "pg060_sec001",
     "href": "pg060_sec001.html",
     "page_number": 54
-  },
-  {
-    "section_id": "qz009",
-    "href": "qz009.html"
   },
   {
     "section_id": "pg061_sec001",
@@ -506,10 +470,6 @@
     "page_number": 60
   },
   {
-    "section_id": "qz010",
-    "href": "qz010.html"
-  },
-  {
     "section_id": "pg067_sec001",
     "href": "pg067_sec001.html",
     "page_number": 61
@@ -543,9 +503,5 @@
     "section_id": "pg072_sec001",
     "href": "pg072_sec001.html",
     "page_number": 66
-  },
-  {
-    "section_id": "qz011",
-    "href": "qz011.html"
   }
 ]

@@ -6,10 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Afya na Mazingira</title>
     <meta name="title-id" content="pg060_sec001" />
-    <meta name="page-section-id" content="90" />
+    <meta name="page-section-id" content="82" />
     <link href="./content/tailwind_output.css" rel="stylesheet">
     <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./assets/fonts.css" rel="stylesheet">
+    <style>
+      /* Keep image descriptions label-free while making their active state visible. */
+      .pg060-animal-grid > div:has(img[data-id].tts-active-block) > div:first-child {
+        background-color: #fde047 !important;
+        box-shadow: 0 0 0 4px #2563eb, 0 0 0 7px rgba(253, 224, 71, 0.75) !important;
+        transform: scale(1.05);
+        transition: background-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+      }
+      .pg060-animal-grid > div:has(img[data-id].tts-active-block) > div:first-child span {
+        color: #111827 !important;
+      }
+      .pg060-animal-grid > div:has(img[data-id].tts-active-block) > div:last-child {
+        border-radius: 0.65rem;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.8), 0 0 14px rgba(253, 224, 71, 0.7);
+        transition: box-shadow 120ms ease;
+      }
+      .pg060-animal-grid img[data-id].tts-active-block {
+        border-radius: 0.5rem;
+        box-shadow: none !important;
+        outline: 2px solid rgba(37, 99, 235, 0.9);
+        outline-offset: -2px;
+        filter: none;
+      }
+      body[reduce-motion="true"] .pg060-animal-grid > div {
+        transition: none !important;
+      }
+    </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center">
@@ -26,83 +53,83 @@
 
       <div class="mx-auto mb-8 flex max-w-4xl items-start justify-center gap-6 max-lg:items-center max-lg:gap-5 max-sm:flex-col max-sm:items-start max-sm:gap-4">
         <div class="shrink-0 self-start max-sm:self-center">
-          <img data-id="pg060_im002" src="images/pg060_im002.jpg" alt="Paka wa katuni akiongea na kuinua mkono." class="w-40 h-auto max-lg:w-36 max-sm:w-32" style="max-width: 100%; height: auto;">
+          <img data-id="pg060_im002" src="images/pg060_im002.jpg" alt="Picha ya paka wa katuni mwenye rangi ya kahawia akionesha kwa mkono." class="w-40 h-auto max-lg:w-36 max-sm:w-32" style="max-width: 100%; height: auto;">
         </div>
         <div class="z-10 inline-block max-w-md rounded-3xl border-2 border-cyan-400 border-dashed bg-yellow-100 px-6 py-4 shadow-sm max-sm:max-w-full max-sm:px-5 max-sm:py-4">
           <p class="adt-body text-left leading-relaxed text-stone-800"><span data-id="pg060_n0004">Ninaepuka wanyama hatarishi ili kuwa salama.</span></p>
         </div>
       </div>
 
-      <div class="mx-auto grid max-w-4xl grid-cols-2 gap-x-12 gap-y-4 max-lg:gap-x-8 max-lg:gap-y-4 max-sm:grid-cols-1 max-sm:gap-y-4">
+      <div class="pg060-animal-grid mx-auto grid max-w-4xl grid-cols-2 gap-x-12 gap-y-4 max-lg:gap-x-8 max-lg:gap-y-4 max-sm:grid-cols-1 max-sm:gap-y-4">
         <div class="flex items-center gap-4 max-sm:gap-3">
           <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cyan-500 shadow-sm max-sm:h-12 max-sm:w-12">
-            <span data-id="pg060_n0007" class="adt-body font-bold text-yellow-300">1</span>
+            <span aria-hidden="true" class="adt-body font-bold text-yellow-300">1</span>
           </div>
           <div class="flex-1 overflow-hidden bg-sky-50">
-            <img data-id="pg060_im003" src="images/pg060_im003.jpg" alt="Chui aliyesimama na kuonyesha meno." class="w-full h-auto" style="max-width: 100%; height: auto;">
+            <img data-id="pg060_im003" src="images/pg060_im003.jpg" alt="Moja, chui." class="w-full h-auto" style="max-width: 100%; height: auto;">
           </div>
         </div>
 
         <div class="flex items-center gap-4 max-sm:gap-3">
           <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cyan-500 shadow-sm max-sm:h-12 max-sm:w-12">
-            <span data-id="pg060_n0009" class="adt-body font-bold text-yellow-300">2</span>
+            <span aria-hidden="true" class="adt-body font-bold text-yellow-300">2</span>
           </div>
           <div class="flex-1 overflow-hidden bg-amber-50">
-            <img data-id="pg060_im004" src="images/pg060_im004.jpg" alt="Simba mwenye manyoya mengi shingoni akitembea kwenye nyasi." class="w-full h-auto" style="max-width: 100%; height: auto;">
+            <img data-id="pg060_im004" src="images/pg060_im004.jpg" alt="Mbili, simba." class="w-full h-auto" style="max-width: 100%; height: auto;">
           </div>
         </div>
 
         <div class="flex items-center gap-4 max-sm:gap-3">
           <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cyan-500 shadow-sm max-sm:h-12 max-sm:w-12">
-            <span data-id="pg060_n0011" class="adt-body font-bold text-yellow-300">3</span>
+            <span aria-hidden="true" class="adt-body font-bold text-yellow-300">3</span>
           </div>
           <div class="flex-1 overflow-hidden bg-lime-50">
-            <img data-id="pg060_im005" src="images/pg060_im005.jpg" alt="Mamba mkubwa amelala juu ya ardhi karibu na majani." class="w-full h-auto" style="max-width: 100%; height: auto;">
+            <img data-id="pg060_im005" src="images/pg060_im005.jpg" alt="Tatu, mamba." class="w-full h-auto" style="max-width: 100%; height: auto;">
           </div>
         </div>
 
         <div class="flex items-center gap-4 max-sm:gap-3">
           <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cyan-500 shadow-sm max-sm:h-12 max-sm:w-12">
-            <span data-id="pg060_n0013" class="adt-body font-bold text-yellow-300">4</span>
+            <span aria-hidden="true" class="adt-body font-bold text-yellow-300">4</span>
           </div>
           <div class="flex-1 overflow-hidden bg-stone-50">
-            <img data-id="pg060_im008" src="images/pg060_im008.jpg" alt="Nyoka mrefu mwenye rangi nyeusi na mistari mekundu, amejikunja juu ya kokoto." class="w-full h-auto" style="max-width: 100%; height: auto;">
+            <img data-id="pg060_im008" src="images/pg060_im008.jpg" alt="Nne, nyoka." class="w-full h-auto" style="max-width: 100%; height: auto;">
           </div>
         </div>
 
         <div class="flex items-center gap-4 max-sm:gap-3">
           <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cyan-500 shadow-sm max-sm:h-12 max-sm:w-12">
-            <span data-id="pg060_n0015" class="adt-body font-bold text-yellow-300">5</span>
+            <span aria-hidden="true" class="adt-body font-bold text-yellow-300">5</span>
           </div>
           <div class="flex-1 overflow-hidden bg-slate-50">
-            <img data-id="pg060_im006" src="images/pg060_im006.jpg" alt="Tembo akitembea kwenye uwanda wa nyasi." class="w-full h-auto" style="max-width: 100%; height: auto;">
+            <img data-id="pg060_im006" src="images/pg060_im006.jpg" alt="Tano, tembo." class="w-full h-auto" style="max-width: 100%; height: auto;">
           </div>
         </div>
 
         <div class="flex items-center gap-4 max-sm:gap-3">
           <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cyan-500 shadow-sm max-sm:h-12 max-sm:w-12">
-            <span data-id="pg060_n0017" class="adt-body font-bold text-yellow-300">6</span>
+            <span aria-hidden="true" class="adt-body font-bold text-yellow-300">6</span>
           </div>
           <div class="flex-1 overflow-hidden bg-zinc-50">
-            <img data-id="pg060_im009" src="images/pg060_im009.jpg" alt="Kiboko mkubwa akisimama kwenye maji ya kina kifupi." class="w-full h-auto" style="max-width: 100%; height: auto;">
+            <img data-id="pg060_im009" src="images/pg060_im009.jpg" alt="Sita, kiboko." class="w-full h-auto" style="max-width: 100%; height: auto;">
           </div>
         </div>
 
         <div class="flex items-center gap-4 max-sm:gap-3">
           <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cyan-500 shadow-sm max-sm:h-12 max-sm:w-12">
-            <span data-id="pg060_n0019" class="adt-body font-bold text-yellow-300">7</span>
+            <span aria-hidden="true" class="adt-body font-bold text-yellow-300">7</span>
           </div>
           <div class="flex-1 overflow-hidden bg-emerald-50">
-            <img data-id="pg060_im007" src="images/pg060_im007.jpg" alt="Nyati mweusi amesimama kwenye eneo la wazi lenye majimaji." class="w-full h-auto" style="max-width: 100%; height: auto;">
+            <img data-id="pg060_im007" src="images/pg060_im007.jpg" alt="Saba, nyati." class="w-full h-auto" style="max-width: 100%; height: auto;">
           </div>
         </div>
 
         <div class="flex items-center gap-4 max-sm:gap-3">
           <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cyan-500 shadow-sm max-sm:h-12 max-sm:w-12">
-            <span data-id="pg060_n0021" class="adt-body font-bold text-yellow-300">8</span>
+            <span aria-hidden="true" class="adt-body font-bold text-yellow-300">8</span>
           </div>
           <div class="flex-1 overflow-hidden bg-orange-50">
-            <img data-id="pg060_im010" src="images/pg060_im010.jpg" alt="Fisi mwenye madoa akisimama na kuangalia mbele." class="w-full h-auto" style="max-width: 100%; height: auto;">
+            <img data-id="pg060_im010" src="images/pg060_im010.jpg" alt="Nane, fisi." class="w-full h-auto" style="max-width: 100%; height: auto;">
           </div>
         </div>
       </div>

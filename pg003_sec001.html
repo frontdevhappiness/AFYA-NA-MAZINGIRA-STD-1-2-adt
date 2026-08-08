@@ -43,10 +43,50 @@
         text-align: right;
       }
 
+      /*
+       * The static TOC uses pseudo-elements to keep page numbers aligned.
+       * During read-aloud the runtime wraps the real text in word spans and
+       * stores the original markup in data-tts-original-html. Show those real
+       * spans while narration is active so the yellow word highlight remains
+       * visible, while retaining the dotted leader and right-aligned number.
+       */
+      .toc-entry[data-tts-original-html] {
+        display: flex;
+        font-size: 1.5rem !important;
+        line-height: 1.5;
+      }
+
+      .toc-entry[data-tts-original-html]::before,
+      .toc-entry[data-tts-original-html]::after {
+        content: none;
+      }
+
+      .toc-entry[data-tts-original-html] > [data-word-index] {
+        background-color: #fff;
+        position: relative;
+        z-index: 1;
+      }
+
+      .toc-entry[data-tts-original-html] > [data-word-index]:last-of-type {
+        margin-left: auto;
+        min-width: 3rem;
+        padding-left: 0.75rem;
+        text-align: right;
+      }
+
+      .toc-entry[data-tts-original-html] > [data-word-index].bg-yellow-300 {
+        background-color: #fde047 !important;
+        color: #111827 !important;
+      }
+
       @media (max-width: 640px) {
         .toc-entry::before,
         .toc-entry::after {
           font-size: 1.125rem;
+        }
+
+        .toc-entry[data-tts-original-html] {
+          font-size: 1.125rem !important;
         }
       }
     </style>
