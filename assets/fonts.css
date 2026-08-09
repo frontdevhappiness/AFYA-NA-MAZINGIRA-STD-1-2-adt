@@ -6,6 +6,7 @@
   font-display: swap;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
   font-family: 'Atkinson Hyperlegible';
   src: url('./fonts/AtkinsonHyperlegible-400-latin-ext.woff2') format('woff2');
@@ -32,6 +33,14 @@
 }
 
 @font-face {
+  font-family: 'Sassoon Primary Std';
+  src: url('./fonts/SassoonPrimaryStd-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Merriweather';
   src: url('./fonts/Merriweather-VariableFont.woff2') format('woff2');
   font-weight: 300 800;
@@ -47,12 +56,2287 @@
   font-display: swap;
 }
 
-/* Apply the font globally */
-body, p, h1, h2, h3, h4, h5, h6, span, div, button, input, textarea, select {
-  font-family: "Merriweather", serif;
+/*
+ * Shared book typography and page framing.
+ *
+ * The source PDF uses a rounded sans-serif face, three clear heading levels,
+ * and alternating pink/yellow corner artwork.  Keep those rules here so every
+ * responsive page uses the same visual language without changing its content
+ * or read-aloud hooks.
+ */
+:root {
+  --adt-font-book: 'Sassoon Primary Std', 'Atkinson Hyperlegible', Arial, sans-serif;
+  --adt-body-size: clamp(1rem, 0.96rem + 0.14vw, 1.125rem);
+  --adt-table-size: clamp(0.95rem, 0.92rem + 0.1vw, 1.0625rem);
+  --adt-h1-size: clamp(1.7rem, 1.56rem + 0.52vw, 2.125rem);
+  --adt-h2-size: clamp(1.4rem, 1.3rem + 0.36vw, 1.7rem);
+  --adt-h3-size: clamp(1.2rem, 1.13rem + 0.25vw, 1.45rem);
+  --adt-text-leading: 1.55;
+}
+
+body, p, h1, h2, h3, h4, h5, h6, span, div, button, input, textarea, select,
+table, th, td, caption, label, li, dt, dd, figcaption {
+  font-family: 'Atkinson Hyperlegible', Arial, sans-serif;
+}
+
+#content,
+#content * {
+  font-family: var(--adt-font-book);
+}
+
+#content {
+  color: #1f2937;
+  margin-inline: auto;
+}
+
+#content :where(p, li, dt, dd, .adt-body) {
+  font-size: var(--adt-body-size) !important;
+  line-height: var(--adt-text-leading) !important;
+}
+
+#content :where(h1, .adt-h1) {
+  font-size: var(--adt-h1-size) !important;
+  line-height: 1.18 !important;
+}
+
+#content :where(h2, .adt-h2) {
+  font-size: var(--adt-h2-size) !important;
+  line-height: 1.24 !important;
+}
+
+#content :where(h3, h4, .adt-h3) {
+  font-size: var(--adt-h3-size) !important;
+  line-height: 1.3 !important;
+}
+
+#content :where(table) {
+  margin-inline: auto;
+  font-size: var(--adt-table-size) !important;
+  line-height: 1.45 !important;
+}
+
+#content :where(th, td, caption) {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+#content :where(input, textarea, select, button) {
+  font-size: var(--adt-table-size) !important;
+  line-height: 1.45 !important;
+}
+
+#content :where(p, li, th, td, caption, h1, h2, h3, h4, .adt-body, .adt-h1, .adt-h2, .adt-h3) > span[data-id] {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+#content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* All source-book pages except the cover receive the PDF's outer frame. */
+body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding-bottom: clamp(6.75rem, 11vw, 8.75rem);
+  overflow: hidden;
+  background: #fff;
+}
+
+body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::before,
+body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  z-index: 20;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::before {
+  top: 0;
+  left: 0;
+  width: clamp(7.25rem, 13vw, 10.5rem);
+  height: clamp(8.75rem, 16vw, 12.5rem);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 180' preserveAspectRatio='none'%3E%3Cpath d='M0 0H150C78 18 34 82 0 180Z' fill='%23f9a8d4'/%3E%3Cpath d='M0 0H116C59 28 26 91 0 158Z' fill='%23ec4899'/%3E%3Cpath d='M0 0H78C39 35 17 90 0 132Z' fill='%23d60085'/%3E%3C/svg%3E");
+}
+
+body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::after {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(6.75rem, 11vw, 8.75rem);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 130' preserveAspectRatio='none'%3E%3Cpath d='M0 94C310 121 690 92 1000 15V130H0Z' fill='%23fff59d'/%3E%3Cpath d='M0 111C390 129 760 104 1000 44V130H0Z' fill='%23f8bbd0'/%3E%3Cpath d='M875 130C936 105 974 59 1000 0V130Z' fill='%23f472b6'/%3E%3Cpath d='M925 130C966 101 989 59 1000 25V130Z' fill='%23ec168c'/%3E%3C/svg%3E");
+}
+
+body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) #content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 72rem !important;
+  min-height: 100vh;
+  background: #fff;
+}
+
+body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) #content > section {
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin-inline: auto;
+}
+
+/* Even PDF pages mirror the odd-page artwork. */
+body:has(
+  [data-section-id^="pg002_"], [data-section-id^="pg004_"], [data-section-id^="pg006_"],
+  [data-section-id^="pg008_"], [data-section-id^="pg010_"], [data-section-id^="pg012_"],
+  [data-section-id^="pg014_"], [data-section-id^="pg016_"], [data-section-id^="pg018_"],
+  [data-section-id^="pg020_"], [data-section-id^="pg022_"], [data-section-id^="pg024_"],
+  [data-section-id^="pg026_"], [data-section-id^="pg028_"], [data-section-id^="pg030_"],
+  [data-section-id^="pg032_"], [data-section-id^="pg034_"], [data-section-id^="pg036_"],
+  [data-section-id^="pg038_"], [data-section-id^="pg040_"], [data-section-id^="pg042_"],
+  [data-section-id^="pg044_"], [data-section-id^="pg046_"], [data-section-id^="pg048_"],
+  [data-section-id^="pg050_"], [data-section-id^="pg052_"], [data-section-id^="pg054_"],
+  [data-section-id^="pg056_"], [data-section-id^="pg058_"], [data-section-id^="pg060_"],
+  [data-section-id^="pg062_"], [data-section-id^="pg064_"], [data-section-id^="pg066_"],
+  [data-section-id^="pg068_"], [data-section-id^="pg070_"], [data-section-id^="pg072_"]
+) main::before {
+  right: 0;
+  left: auto;
+  transform: scaleX(-1);
+}
+
+body:has(
+  [data-section-id^="pg002_"], [data-section-id^="pg004_"], [data-section-id^="pg006_"],
+  [data-section-id^="pg008_"], [data-section-id^="pg010_"], [data-section-id^="pg012_"],
+  [data-section-id^="pg014_"], [data-section-id^="pg016_"], [data-section-id^="pg018_"],
+  [data-section-id^="pg020_"], [data-section-id^="pg022_"], [data-section-id^="pg024_"],
+  [data-section-id^="pg026_"], [data-section-id^="pg028_"], [data-section-id^="pg030_"],
+  [data-section-id^="pg032_"], [data-section-id^="pg034_"], [data-section-id^="pg036_"],
+  [data-section-id^="pg038_"], [data-section-id^="pg040_"], [data-section-id^="pg042_"],
+  [data-section-id^="pg044_"], [data-section-id^="pg046_"], [data-section-id^="pg048_"],
+  [data-section-id^="pg050_"], [data-section-id^="pg052_"], [data-section-id^="pg054_"],
+  [data-section-id^="pg056_"], [data-section-id^="pg058_"], [data-section-id^="pg060_"],
+  [data-section-id^="pg062_"], [data-section-id^="pg064_"], [data-section-id^="pg066_"],
+  [data-section-id^="pg068_"], [data-section-id^="pg070_"], [data-section-id^="pg072_"]
+) main::after {
+  transform: scaleX(-1);
+}
+
+/* Page 37 previously carried a one-off copy of the same frame. */
+[data-section-id="pg037_sec001"] > svg[aria-hidden="true"] {
+  display: none !important;
+}
+
+[data-section-id="pg037_sec001"] > p:first-of-type {
+  margin-top: 0 !important;
+  padding-left: 0 !important;
+}
+
+/*
+ * Remove legacy page ornament that does not carry content. This targets only
+ * direct decorative children; numbered markers and speech-bubble pointers
+ * nested with real content remain intact.
+ */
+#content section > [aria-hidden="true"].absolute,
+#content section > svg[aria-hidden="true"] {
+  display: none !important;
+}
+
+/* Keep the useful heading pill but remove oversized full-width colour bands. */
+#content section > div:first-child[class*="bg-gradient-to-r"],
+#content section > div:first-child.bg-pink-500 {
+  background: transparent !important;
+}
+
+#content section > .w-full.bg-pink-500,
+#content section > .w-full.bg-gradient-to-r {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+#content section > div:first-child[class*="bg-gradient-to-r"] > div[class*="max-w-5xl"],
+#content section > div:first-child.bg-pink-500 > div[class*="max-w-5xl"] {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Nested empty corner shapes and printed online-reading watermarks are noise. */
+#content [aria-hidden="true"].absolute:empty,
+#content [aria-hidden="true"].absolute:has([data-id="pg004_n0037"]),
+#content :is(
+  [data-id="pg003_n0024"], [data-id="pg004_n0037"], [data-id="pg005_n0007"]
+) {
+  display: none !important;
+}
+
+/* Replace flattened decorative title graphics with their existing live text. */
+[data-section-id="pg007_sec001"] img[src$="pg007_im013.png"],
+[data-section-id="pg070_sec001"] img[role="presentation"],
+[data-section-id="pg070_sec002"] img[role="presentation"],
+[data-section-id="pg072_sec001"] img[role="presentation"] {
+  display: none !important;
+}
+
+[data-section-id="pg007_sec001"] img[src$="pg007_im013.png"] + .sr-only {
+  position: static !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+}
+
+[data-section-id="pg070_sec001"] [data-id="pg070_n0003"],
+[data-section-id="pg070_sec002"] [data-id="pg070_n0006"],
+[data-section-id="pg072_sec001"] [data-id="pg072_n0002"] {
+  position: static !important;
+  display: inline-flex !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 0 1rem !important;
+  padding: 0.6rem 1.4rem !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+  border: 0 !important;
+  border-radius: 1rem !important;
+  font-size: var(--adt-h3-size) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  box-shadow: none !important;
+}
+
+[data-section-id="pg070_sec001"] [data-id="pg070_n0003"] {
+  color: #fff !important;
+  background: #ef3d8d !important;
+}
+
+[data-section-id="pg070_sec002"] [data-id="pg070_n0006"] {
+  color: #fff !important;
+  background: #27bdb4 !important;
+}
+
+[data-section-id="pg072_sec001"] [data-id="pg072_n0002"] {
+  align-items: center;
+  justify-content: center;
+  min-width: 18rem;
+  margin-bottom: 1.35rem !important;
+  padding: 0.42rem 2rem 0.48rem !important;
+  border-radius: 999px !important;
+  color: #fff !important;
+  background: linear-gradient(180deg, #ff64c5 0%, #f00095 52%, #9c0068 78%, #5c003e 100%) !important;
+  box-shadow: inset 0 0.12rem 0 rgb(255 255 255 / 0.42), 0 0.24rem 0.32rem rgb(73 0 47 / 0.25) !important;
+  font-size: clamp(1.15rem, 1.1rem + 0.2vw, 1.35rem) !important;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  [data-section-id="pg072_sec001"] [data-id="pg072_n0002"] {
+    min-width: min(15rem, 82vw);
+    padding-inline: 1.4rem !important;
+  }
+}
+
+/*
+ * Source-PDF table of contents: one live entry, dotted leader and page number.
+ * The real data-id text stays in the DOM for narration; the static view uses
+ * its data attributes so no duplicate title or number is painted.
+ */
+#content [data-section-id="pg003_sec001"] .toc-entry {
+  font-size: 0 !important;
+}
+
+#content [data-section-id="pg003_sec001"] .toc-entry::before,
+#content [data-section-id="pg003_sec001"] .toc-entry::after {
+  font-size: var(--adt-body-size) !important;
+  line-height: 1.35 !important;
+}
+
+#content [data-section-id="pg003_sec001"] .toc-entry[data-tts-original-html] {
+  font-size: var(--adt-body-size) !important;
+  line-height: 1.35 !important;
+}
+
+#content [data-section-id="pg003_sec001"] :is(
+  [data-id="pg003_n0005"], [data-id="pg003_n0007"],
+  [data-id="pg003_n0021"], [data-id="pg003_n0023"]
+)::before {
+  min-width: 9.5rem;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 0 1.25rem 1.25rem 0;
+  color: #fff !important;
+  background: linear-gradient(to bottom, #ee3ecb 0%, #f32e98 48%, #8d0c78 100%) !important;
+  box-shadow: 0 0.2rem 0.35rem rgb(0 0 0 / 16%);
+  font-weight: 700 !important;
+}
+
+@media (max-width: 640px) {
+  #content [data-section-id="pg003_sec001"] :is(
+    [data-id="pg003_n0005"], [data-id="pg003_n0007"],
+    [data-id="pg003_n0021"], [data-id="pg003_n0023"]
+  )::before {
+    min-width: 7.5rem;
+    padding-inline: 0.65rem !important;
+  }
+}
+
+/*
+ * Chapter One originally used a flattened banner image that already contained
+ * a pink page corner. Rebuild only that visual shell from its existing text
+ * IDs so it matches Chapters Two–Four and does not duplicate the shared frame.
+ */
+[data-section-id="pg007_sec001"] > .w-full.mb-8 {
+  box-sizing: border-box;
+  margin-bottom: 2rem !important;
+  padding: 2.5rem 2rem;
+  border-radius: 0.25rem;
+  background: linear-gradient(90deg, #12b8ca 0%, #10a9ad 50%, #0899b2 100%);
+  box-shadow: 0 0.5rem 0 #0e7490;
+}
+
+[data-section-id="pg007_sec001"] > .w-full.mb-8 > img[role="presentation"] {
+  display: none !important;
+}
+
+[data-section-id="pg007_sec001"] > .w-full.mb-8 > .sr-only {
+  position: static !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 2rem 2.5rem !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+  border: 0 !important;
+  border-radius: 2.5rem;
+  background: #06b6c7;
+  box-shadow: 0 0.65rem 1.25rem rgb(0 0 0 / 18%);
+}
+
+[data-section-id="pg007_sec001"] [data-id="pg007_n0002"] {
+  display: block;
+  color: #fde047 !important;
+  font-size: var(--adt-h1-size) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  text-align: center;
+}
+
+[data-section-id="pg007_sec001"] [data-id="pg007_n0003"] {
+  display: block;
+  width: min(100%, 48rem);
+  margin: 1.25rem auto 0;
+  padding: 1.25rem 2rem;
+  border-radius: 2rem;
+  color: #db2777 !important;
+  background: #fef9c3;
+  box-shadow: 0.35rem 0.35rem 0 rgb(13 148 136 / 25%);
+  font-size: var(--adt-h2-size) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  [data-section-id="pg007_sec001"] > .w-full.mb-8 {
+    padding: 1.5rem 1rem;
+  }
+
+  [data-section-id="pg007_sec001"] > .w-full.mb-8 > .sr-only {
+    padding: 1.25rem 1rem !important;
+    border-radius: 1.75rem;
+  }
+
+  [data-section-id="pg007_sec001"] [data-id="pg007_n0002"],
+  [data-section-id="pg007_sec001"] [data-id="pg007_n0003"] {
+    text-align: left;
+  }
+
+  [data-section-id="pg007_sec001"] [data-id="pg007_n0003"] {
+    padding: 1rem 1.25rem;
+  }
+}
+
+/*
+ * Reusable PDF-inspired exercise component.
+ * Keep content IDs and form controls in the HTML; these classes only control
+ * presentation, so read-aloud, highlighting, and activity state remain intact.
+ */
+.adt-pdf-exercise {
+  width: min(100%, 52rem);
+  color: #243044;
+}
+
+.adt-pdf-exercise__badge {
+  display: inline-grid !important;
+  grid-template-columns: minmax(9.5rem, auto) 4.75rem;
+  align-items: stretch;
+  margin-bottom: 1rem !important;
+  overflow: hidden;
+  border: 0.18rem solid #08acc7 !important;
+  border-radius: 0.8rem 1.15rem 1.15rem 0.8rem !important;
+  background: #fff;
+  box-shadow: 0 0.2rem 0 rgba(8, 172, 199, 0.13) !important;
+}
+
+.adt-pdf-exercise__badge-label,
+.adt-pdf-exercise__badge-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.55rem;
+  padding: 0.65rem 1.25rem !important;
+  font-size: var(--adt-h3-size) !important;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1 !important;
+}
+
+.adt-pdf-exercise__badge-label {
+  position: relative;
+  color: #fff !important;
+  background: #27bdb4 !important;
+}
+
+.adt-pdf-exercise__badge-label::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -1.05rem;
+  width: 2.1rem;
+  height: 100%;
+  border-radius: 0 100% 100% 0;
+  background: #27bdb4;
+}
+
+.adt-pdf-exercise__badge-number {
+  position: relative;
+  z-index: 1;
+  border-left: 0 !important;
+  color: #0597ba !important;
+  background: #fff !important;
+}
+
+.adt-pdf-exercise__panel {
+  border: 0.16rem solid #10b6c6 !important;
+  border-radius: 1.2rem !important;
+  padding: clamp(1.25rem, 2.6vw, 2rem) !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.adt-pdf-exercise__panel > div {
+  gap: 1.6rem;
+}
+
+.adt-pdf-exercise .adt-answer-lines {
+  min-height: 6.75rem !important;
+  border: 0.12rem solid #8dcfd7 !important;
+  border-radius: 0.9rem !important;
+  padding: 0.6rem 0.85rem !important;
+  line-height: 2.3rem !important;
+  color: #243044 !important;
+  background-color: #fffef7 !important;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2.18rem,
+    #b9d8dd 2.18rem,
+    #b9d8dd 2.28rem
+  ) !important;
+  background-origin: content-box;
+  resize: vertical;
+}
+
+.adt-pdf-exercise .adt-answer-lines--large {
+  min-height: 8rem !important;
+}
+
+@media (max-width: 640px) {
+  .adt-pdf-exercise__badge {
+    grid-template-columns: minmax(7.75rem, auto) 3.75rem;
+  }
+
+  .adt-pdf-exercise__badge-label,
+  .adt-pdf-exercise__badge-number {
+    min-height: 3rem;
+    padding: 0.55rem 0.85rem !important;
+  }
+
+  .adt-pdf-exercise__panel {
+    border-radius: 0.9rem !important;
+  }
+
+  .adt-pdf-exercise .adt-answer-lines {
+    min-height: 5.75rem !important;
+  }
+
+  .adt-pdf-exercise .adt-answer-lines--large {
+    min-height: 6.75rem !important;
+  }
+}
+
+/* Consistent exercise treatment across the existing page structures. */
+#content :is(
+  [data-section-id="pg010_sec001"], [data-section-id="pg014_sec002"],
+  [data-section-id="pg017_sec002"], [data-section-id="pg021_sec002"],
+  [data-section-id="pg026_sec002"], [data-section-id="pg028_sec002"],
+  [data-section-id="pg032_sec002"], [data-section-id="pg034_sec003"],
+  [data-section-id="pg038_sec002"], [data-section-id="pg042_sec002"],
+  [data-section-id="pg048_sec001"], [data-section-id="pg053_sec003"],
+  [data-section-id="pg056_sec001"], [data-section-id="pg059_sec001"],
+  [data-section-id="pg061_sec002"], [data-section-id="pg063_sec003"],
+  [data-section-id="pg064_sec003"], [data-section-id="pg067_sec001"]
+) {
+  width: min(100%, 64rem) !important;
+  margin-inline: auto !important;
+  color: #243044;
+}
+
+#content :is(
+  [data-id="pg010_n0003"], [data-id="pg014_n0012"],
+  [data-id="pg017_n0019"], [data-id="pg021_n0009"],
+  [data-id="pg026_n0016"], [data-id="pg028_n0015"],
+  [data-id="pg032_n0016"], [data-id="pg034_n0010"],
+  [data-id="pg038_n0008"], [data-id="pg053_n0009"],
+  [data-id="pg056_n0010"], [data-id="pg059_n0003"],
+  [data-id="pg061_n0010"], [data-id="pg063_n0010"],
+  [data-id="pg064_n0015"], [data-id="pg067_n0003"]
+) {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.45rem;
+  margin: 0 !important;
+  padding: 0.65rem 1.5rem !important;
+  border: 0.18rem solid #08acc7 !important;
+  border-radius: 0.8rem 1.1rem 1.1rem 0.8rem !important;
+  color: #fff !important;
+  background: #27bdb4 !important;
+  box-shadow: 0 0.2rem 0 rgba(8, 172, 199, 0.13) !important;
+  font-size: var(--adt-h3-size) !important;
+  font-weight: 700 !important;
+  font-style: italic;
+  line-height: 1 !important;
+}
+
+#content :is(div, h1, h2, h3, span):has(> :is(
+  [data-id="pg010_n0003"], [data-id="pg014_n0012"],
+  [data-id="pg017_n0019"], [data-id="pg021_n0009"],
+  [data-id="pg026_n0016"], [data-id="pg028_n0015"],
+  [data-id="pg032_n0016"], [data-id="pg034_n0010"],
+  [data-id="pg038_n0008"], [data-id="pg053_n0009"],
+  [data-id="pg056_n0010"], [data-id="pg059_n0003"],
+  [data-id="pg061_n0010"], [data-id="pg063_n0010"],
+  [data-id="pg064_n0015"], [data-id="pg067_n0003"]
+)) {
+  overflow: visible !important;
+  margin: 0 0 1rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#content :is(
+  [data-section-id="pg010_sec001"], [data-section-id="pg014_sec002"],
+  [data-section-id="pg017_sec002"], [data-section-id="pg021_sec002"],
+  [data-section-id="pg026_sec002"], [data-section-id="pg028_sec002"],
+  [data-section-id="pg032_sec002"], [data-section-id="pg034_sec003"],
+  [data-section-id="pg038_sec002"], [data-section-id="pg042_sec002"],
+  [data-section-id="pg048_sec001"], [data-section-id="pg053_sec003"],
+  [data-section-id="pg056_sec001"], [data-section-id="pg059_sec001"],
+  [data-section-id="pg061_sec002"], [data-section-id="pg063_sec003"],
+  [data-section-id="pg064_sec003"], [data-section-id="pg067_sec001"]
+) textarea {
+  min-height: 6.5rem !important;
+  border: 0.12rem solid #8dcfd7 !important;
+  border-radius: 0.9rem !important;
+  padding: 0.75rem 0.9rem !important;
+  color: #243044 !important;
+  background-color: #fffef7 !important;
+  resize: vertical;
+}
+
+#content :is(
+  [data-section-id="pg014_sec002"], [data-section-id="pg021_sec002"],
+  [data-section-id="pg028_sec002"], [data-section-id="pg032_sec002"],
+  [data-section-id="pg034_sec003"], [data-section-id="pg059_sec001"],
+  [data-section-id="pg067_sec001"]
+) table {
+  border: 0.12rem solid #10b6c6 !important;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+#content :is(
+  [data-section-id="pg014_sec002"], [data-section-id="pg021_sec002"],
+  [data-section-id="pg028_sec002"], [data-section-id="pg032_sec002"],
+  [data-section-id="pg034_sec003"], [data-section-id="pg059_sec001"],
+  [data-section-id="pg067_sec001"]
+) :is(th, td) {
+  border-color: #10b6c6 !important;
+}
+
+#content :is(
+  [data-section-id="pg014_sec002"], [data-section-id="pg021_sec002"],
+  [data-section-id="pg028_sec002"], [data-section-id="pg032_sec002"],
+  [data-section-id="pg034_sec003"], [data-section-id="pg059_sec001"],
+  [data-section-id="pg067_sec001"]
+) th {
+  background: #e7f8f7 !important;
+}
+
+/* Remove legacy double shells around two exercise badges. */
+#content [data-section-id="pg014_sec002"] > div:first-child,
+#content [data-section-id="pg059_sec001"] > div > div:first-child > div:first-child {
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#content [data-section-id="pg014_sec002"] > div:first-child > div:last-child {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  #content :is(
+    [data-id="pg010_n0003"], [data-id="pg014_n0012"],
+    [data-id="pg017_n0019"], [data-id="pg021_n0009"],
+    [data-id="pg026_n0016"], [data-id="pg028_n0015"],
+    [data-id="pg032_n0016"], [data-id="pg034_n0010"],
+    [data-id="pg038_n0008"], [data-id="pg053_n0009"],
+    [data-id="pg056_n0010"], [data-id="pg059_n0003"],
+    [data-id="pg061_n0010"], [data-id="pg063_n0010"],
+    [data-id="pg064_n0015"], [data-id="pg067_n0003"]
+  ) {
+    min-height: 3rem;
+    padding: 0.55rem 1rem !important;
+  }
+}
+
+/* PDF role colours: pink for activities, pale cyan for questions. */
+#content :is(
+  [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+  [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+  [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+  [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+  [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+  [data-id="pg047_n0007"], [data-id="pg053_n0002"],
+  [data-id="pg058_n0024"], [data-id="pg063_n0013"],
+  [data-id="pg064_n0011"], [data-id="pg066_n0022"]
+) {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.45rem;
+  margin: 0 !important;
+  padding: 0.65rem 1.5rem !important;
+  border: 0.18rem solid #f4a6c7 !important;
+  border-radius: 1rem 1rem 0.8rem 0.8rem !important;
+  color: #fff !important;
+  background: #f23987 !important;
+  box-shadow: 0.25rem 0.3rem 0 #d6d3d1 !important;
+  font-size: var(--adt-h3-size) !important;
+  font-weight: 700 !important;
+  font-style: italic;
+  line-height: 1 !important;
+}
+
+#content :is(div, h1, h2, h3, p, span):has(> :is(
+  [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+  [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+  [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+  [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+  [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+  [data-id="pg047_n0007"], [data-id="pg053_n0002"],
+  [data-id="pg058_n0024"], [data-id="pg063_n0013"],
+  [data-id="pg064_n0011"], [data-id="pg066_n0022"]
+)) {
+  overflow: visible !important;
+  margin-bottom: 1rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#content :is(
+  [data-id="pg007_n0019"], [data-id="pg009_n0017"],
+  [data-id="pg011_n0002"], [data-id="pg014_n0002"],
+  [data-id="pg015_n0009"], [data-id="pg016_n0002"],
+  [data-id="pg017_n0012"], [data-id="pg018_n0020"],
+  [data-id="pg020_n0005"], [data-id="pg020_n0021"],
+  [data-id="pg023_n0010"], [data-id="pg026_n0006"],
+  [data-id="pg028_n0002"], [data-id="pg031_n0003"],
+  [data-id="pg032_n0006"], [data-id="pg033_n0019"],
+  [data-id="pg034_n0001"], [data-id="pg034_n0053"],
+  [data-id="pg036_n0002"], [data-id="pg037_n0006"],
+  [data-id="pg038_n0003"], [data-id="pg042_n0004"],
+  [data-id="pg043_n0015"], [data-id="pg047_n0004"],
+  [data-id="pg050_n0014"], [data-id="pg053_n0006"],
+  [data-id="pg055_n0002"], [data-id="pg056_n0002"],
+  [data-id="pg057_n0017"], [data-id="pg058_n0015"],
+  [data-id="pg059_n0046"], [data-id="pg061_n0002"],
+  [data-id="pg063_n0002"], [data-id="pg064_n0008"],
+  [data-id="pg066_n0015"], [data-id="pg069_n0022"]
+) {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 3.1rem;
+  margin: 0 0 1rem !important;
+  padding: 0.55rem 1.6rem !important;
+  border: 0.12rem solid #56c8cd !important;
+  border-radius: 0.75rem 1.6rem 1.6rem 0.75rem !important;
+  color: #049db3 !important;
+  background: #cdeeed !important;
+  box-shadow: none !important;
+  font-size: var(--adt-h3-size) !important;
+  font-weight: 700 !important;
+  font-style: italic;
+  line-height: 1 !important;
+}
+
+#content :is(div, h1, h2, h3, p, span):has(> :is(
+  [data-id="pg007_n0019"], [data-id="pg009_n0017"],
+  [data-id="pg011_n0002"], [data-id="pg014_n0002"],
+  [data-id="pg015_n0009"], [data-id="pg016_n0002"],
+  [data-id="pg017_n0012"], [data-id="pg018_n0020"],
+  [data-id="pg020_n0005"], [data-id="pg020_n0021"],
+  [data-id="pg023_n0010"], [data-id="pg026_n0006"],
+  [data-id="pg028_n0002"], [data-id="pg031_n0003"],
+  [data-id="pg032_n0006"], [data-id="pg033_n0019"],
+  [data-id="pg034_n0001"], [data-id="pg034_n0053"],
+  [data-id="pg036_n0002"], [data-id="pg037_n0006"],
+  [data-id="pg038_n0003"], [data-id="pg042_n0004"],
+  [data-id="pg043_n0015"], [data-id="pg047_n0004"],
+  [data-id="pg050_n0014"], [data-id="pg053_n0006"],
+  [data-id="pg055_n0002"], [data-id="pg056_n0002"],
+  [data-id="pg057_n0017"], [data-id="pg058_n0015"],
+  [data-id="pg059_n0046"], [data-id="pg061_n0002"],
+  [data-id="pg063_n0002"], [data-id="pg064_n0008"],
+  [data-id="pg066_n0015"], [data-id="pg069_n0022"]
+)) {
+  overflow: visible !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* One predictable treatment for written-response controls everywhere. */
+#content textarea {
+  border-color: #8dcfd7 !important;
+  border-radius: 0.9rem !important;
+  color: #243044 !important;
+  background-color: #fffef7 !important;
+  caret-color: #243044 !important;
+}
+
+@media (max-width: 640px) {
+  #content :is(
+    [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+    [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+    [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+    [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+    [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+    [data-id="pg047_n0007"], [data-id="pg053_n0002"],
+    [data-id="pg058_n0024"], [data-id="pg063_n0013"],
+    [data-id="pg064_n0011"], [data-id="pg066_n0022"]
+  ) {
+    min-height: 3rem;
+    padding: 0.55rem 1rem !important;
+  }
+}
+
+/* Explicit page selectors keep the mirroring reliable in older Chromium builds. */
+body:has([data-section-id^="pg002_"]) main,
+body:has([data-section-id^="pg004_"]) main,
+body:has([data-section-id^="pg006_"]) main,
+body:has([data-section-id^="pg008_"]) main,
+body:has([data-section-id^="pg010_"]) main,
+body:has([data-section-id^="pg012_"]) main,
+body:has([data-section-id^="pg014_"]) main,
+body:has([data-section-id^="pg016_"]) main,
+body:has([data-section-id^="pg018_"]) main,
+body:has([data-section-id^="pg020_"]) main,
+body:has([data-section-id^="pg022_"]) main,
+body:has([data-section-id^="pg024_"]) main,
+body:has([data-section-id^="pg026_"]) main,
+body:has([data-section-id^="pg028_"]) main,
+body:has([data-section-id^="pg030_"]) main,
+body:has([data-section-id^="pg032_"]) main,
+body:has([data-section-id^="pg034_"]) main,
+body:has([data-section-id^="pg036_"]) main,
+body:has([data-section-id^="pg038_"]) main,
+body:has([data-section-id^="pg040_"]) main,
+body:has([data-section-id^="pg042_"]) main,
+body:has([data-section-id^="pg044_"]) main,
+body:has([data-section-id^="pg046_"]) main,
+body:has([data-section-id^="pg048_"]) main,
+body:has([data-section-id^="pg050_"]) main,
+body:has([data-section-id^="pg052_"]) main,
+body:has([data-section-id^="pg054_"]) main,
+body:has([data-section-id^="pg056_"]) main,
+body:has([data-section-id^="pg058_"]) main,
+body:has([data-section-id^="pg060_"]) main,
+body:has([data-section-id^="pg062_"]) main,
+body:has([data-section-id^="pg064_"]) main,
+body:has([data-section-id^="pg066_"]) main,
+body:has([data-section-id^="pg068_"]) main,
+body:has([data-section-id^="pg070_"]) main,
+body:has([data-section-id^="pg072_"]) main {
+  --adt-frame-mirror: -1;
+}
+
+body:has([data-section-id^="pg002_"]) main::before,
+body:has([data-section-id^="pg004_"]) main::before,
+body:has([data-section-id^="pg006_"]) main::before,
+body:has([data-section-id^="pg008_"]) main::before,
+body:has([data-section-id^="pg010_"]) main::before,
+body:has([data-section-id^="pg012_"]) main::before,
+body:has([data-section-id^="pg014_"]) main::before,
+body:has([data-section-id^="pg016_"]) main::before,
+body:has([data-section-id^="pg018_"]) main::before,
+body:has([data-section-id^="pg020_"]) main::before,
+body:has([data-section-id^="pg022_"]) main::before,
+body:has([data-section-id^="pg024_"]) main::before,
+body:has([data-section-id^="pg026_"]) main::before,
+body:has([data-section-id^="pg028_"]) main::before,
+body:has([data-section-id^="pg030_"]) main::before,
+body:has([data-section-id^="pg032_"]) main::before,
+body:has([data-section-id^="pg034_"]) main::before,
+body:has([data-section-id^="pg036_"]) main::before,
+body:has([data-section-id^="pg038_"]) main::before,
+body:has([data-section-id^="pg040_"]) main::before,
+body:has([data-section-id^="pg042_"]) main::before,
+body:has([data-section-id^="pg044_"]) main::before,
+body:has([data-section-id^="pg046_"]) main::before,
+body:has([data-section-id^="pg048_"]) main::before,
+body:has([data-section-id^="pg050_"]) main::before,
+body:has([data-section-id^="pg052_"]) main::before,
+body:has([data-section-id^="pg054_"]) main::before,
+body:has([data-section-id^="pg056_"]) main::before,
+body:has([data-section-id^="pg058_"]) main::before,
+body:has([data-section-id^="pg060_"]) main::before,
+body:has([data-section-id^="pg062_"]) main::before,
+body:has([data-section-id^="pg064_"]) main::before,
+body:has([data-section-id^="pg066_"]) main::before,
+body:has([data-section-id^="pg068_"]) main::before,
+body:has([data-section-id^="pg070_"]) main::before,
+body:has([data-section-id^="pg072_"]) main::before {
+  right: 0 !important;
+  left: auto !important;
+}
+
+body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::before,
+body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::after {
+  transform: scaleX(var(--adt-frame-mirror, 1));
+}
+
+@media (max-width: 640px) {
+  :root {
+    --adt-body-size: 1rem;
+    --adt-table-size: 0.95rem;
+  }
 }
 
 #nav-container, #nav-container *,
 #interface-container, #interface-container * {
   font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+/* PDF-faithful musical scroll used for the dangerous-objects song on page 49. */
+#content .adt-song-panel {
+  width: min(100%, 50rem);
+  margin: 2rem auto 1.25rem;
+  filter: drop-shadow(0 0.35rem 0.35rem rgb(91 51 22 / 0.12));
+}
+
+#content .adt-song-sheet {
+  position: relative;
+  padding: 1.1rem 3.1rem 0.9rem;
+  border-inline: 0.12rem solid #f2d4bd;
+  background: #fff6ec;
+}
+
+#content .adt-song-rail {
+  position: relative;
+  z-index: 2;
+  height: 2.2rem;
+  margin-inline: -0.75rem;
+  border-radius: 0.35rem;
+  background: repeating-linear-gradient(132deg, #f97316 0 4.2rem, #fca326 4.2rem 5.15rem, #ffd65b 5.15rem 6.15rem, #fca326 6.15rem 7.1rem, #f97316 7.1rem 11.3rem);
+  box-shadow: inset 0 -0.12rem 0 rgb(181 77 12 / 0.25);
+}
+
+#content .adt-song-rail::before,
+#content .adt-song-rail::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 1.55rem;
+  height: 1.25rem;
+  border-radius: 0.35rem;
+  background: #f97316;
+  transform: translateY(-50%);
+}
+
+#content .adt-song-rail::before { left: -1rem; }
+#content .adt-song-rail::after { right: -1rem; }
+
+#content .adt-song-title {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: min(13rem, 72%);
+  min-height: 2.7rem;
+  margin: -0.05rem auto 0.5rem !important;
+  padding: 0.25rem 1.4rem !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: #fff !important;
+  background: linear-gradient(#42ced6, #00a5ad 55%, #087f80) !important;
+  box-shadow: inset 0 0.15rem 0 rgb(255 255 255 / 0.45), 0 0.18rem 0.25rem rgb(0 74 79 / 0.28) !important;
+  font-size: var(--adt-h3-size) !important;
+  font-weight: 700 !important;
+  font-style: italic;
+  line-height: 1 !important;
+}
+
+#content .adt-song-lyrics {
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+#content .adt-song-lyrics > p {
+  margin: 0 !important;
+  padding: 0.48rem 0.35rem 0.38rem;
+  border-bottom: 0.12rem dotted #86584a;
+  color: #222 !important;
+  text-align: center !important;
+  font-style: italic;
+  line-height: 1.35 !important;
+}
+
+#content .adt-song-notes {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  color: #1e7eb8;
+  font-family: serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  line-height: 1;
+  text-shadow: 1.15rem -0.4rem 0 #f3c21c, 2.3rem 0.25rem 0 #db2777;
+  transform: translateY(-50%) rotate(-8deg);
+}
+
+#content .adt-song-notes-left { left: 1.2rem; }
+#content .adt-song-notes-right {
+  right: 1.2rem;
+  transform: translateY(-50%) rotate(8deg);
+}
+
+@media (max-width: 640px) {
+  #content .adt-song-panel { margin-top: 1.4rem; }
+  #content .adt-song-sheet { padding-inline: 1rem; }
+  #content .adt-song-rail { height: 1.65rem; margin-inline: -0.2rem; }
+  #content .adt-song-notes { display: none; }
+  #content .adt-song-title { width: min(11rem, 72%); }
+  #content .adt-song-lyrics > p { padding-inline: 0; }
+}
+
+/* One-page pilot of the supplied transparent Zoezi artwork. */
+#content .adt-zoezi-image-frame-pilot {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 56rem);
+  aspect-ratio: 1708 / 921;
+  margin-inline: auto;
+}
+
+#content .adt-zoezi-image-frame-pilot__art {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+#content .adt-zoezi-image-frame-pilot__badge {
+  position: absolute;
+  z-index: 2;
+  top: 4.1%;
+  left: 5.25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 31.6%;
+  height: 11.7%;
+  text-align: center;
+}
+
+#content .adt-zoezi-image-frame-pilot__badge [data-id] {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+  box-sizing: border-box;
+  column-gap: 0.28em;
+  padding-right: 23% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: clamp(1rem, 0.9rem + 0.55vw, 1.35rem) !important;
+  font-style: italic;
+  line-height: 1 !important;
+  white-space: nowrap;
+}
+
+/* Read-aloud creates one child span per word. Keep the label words apart and
+   place the final number in the artwork's white compartment. */
+#content .adt-zoezi-image-frame-pilot__badge [data-id] > span:last-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23%;
+  height: 100%;
+  margin: 0 !important;
+  color: #049db3 !important;
+}
+
+#content .adt-zoezi-image-frame-pilot__content {
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  right: 7%;
+  bottom: 8%;
+  left: 7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.35rem;
+  padding: 2.8rem 1.4rem 1rem;
+}
+
+#content .adt-zoezi-image-frame-pilot__content > p {
+  margin: 0 !important;
+}
+
+@media (max-width: 640px) {
+  #content .adt-zoezi-image-frame-pilot {
+    aspect-ratio: auto;
+    padding: 4.8rem 1.15rem 1.25rem;
+    border: 0.16rem solid #09a8b5;
+    border-radius: 1.5rem;
+    background: #fff;
+  }
+
+  #content .adt-zoezi-image-frame-pilot__art {
+    display: none;
+  }
+
+  #content .adt-zoezi-image-frame-pilot__badge {
+    top: 0.9rem;
+    left: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.65rem 1.25rem;
+    border-radius: 1rem;
+    background: #26b8ad;
+  }
+
+  #content .adt-zoezi-image-frame-pilot__badge [data-id] {
+    column-gap: 0.28em;
+    padding-right: 0 !important;
+  }
+
+  #content .adt-zoezi-image-frame-pilot__badge [data-id] > span:last-child {
+    position: static;
+    display: inline;
+    width: auto;
+    height: auto;
+    color: #fff !important;
+  }
+
+  #content .adt-zoezi-image-frame-pilot__content {
+    position: static;
+    gap: 1rem;
+    padding: 0;
+  }
+}
+
+/* One-page pilot of the supplied transparent Maswali artwork. */
+#content .adt-maswali-image-frame-pilot {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 58rem);
+  aspect-ratio: 1838 / 856;
+  margin: 1rem auto;
+}
+
+#content .adt-maswali-image-frame-pilot__art {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+#content .adt-maswali-image-frame-pilot__heading {
+  position: absolute;
+  z-index: 2;
+  top: 7.4%;
+  left: 9.4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20.2%;
+  height: 14.5%;
+  text-align: center;
+}
+
+#content .adt-maswali-image-frame-pilot__heading [data-id] {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #087f89 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: clamp(1rem, 0.92rem + 0.42vw, 1.3rem) !important;
+  font-style: italic;
+  line-height: 1 !important;
+}
+
+#content .adt-maswali-image-frame-pilot__content {
+  position: absolute;
+  z-index: 1;
+  top: 31%;
+  right: 7%;
+  bottom: 10%;
+  left: 7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.35rem;
+  padding: 1.6rem 1.4rem 1rem;
+}
+
+#content .adt-maswali-image-frame-pilot__content > p {
+  margin: 0 !important;
+}
+
+@media (max-width: 640px) {
+  #content .adt-maswali-image-frame-pilot {
+    aspect-ratio: auto;
+    padding: 5rem 1.15rem 1.3rem;
+    border: 0.16rem dotted #08a7b2;
+    border-radius: 1.5rem;
+    background: #fffde4;
+  }
+
+  #content .adt-maswali-image-frame-pilot__art {
+    display: none;
+  }
+
+  #content .adt-maswali-image-frame-pilot__heading {
+    top: 1rem;
+    left: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.7rem 1.35rem;
+    border-radius: 1rem;
+    background: #cdeeed;
+  }
+
+  #content .adt-maswali-image-frame-pilot__content {
+    position: static;
+    gap: 1rem;
+    padding: 0;
+  }
+}
+
+/* One-page pilot of the supplied transparent Shughuli artwork. */
+#content .adt-shughuli-image-frame-pilot {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 58rem);
+  aspect-ratio: 2048 / 660;
+  margin: 1rem auto;
+}
+
+#content .adt-shughuli-image-frame-pilot__art {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+#content .adt-shughuli-image-frame-pilot__label,
+#content .adt-shughuli-image-frame-pilot__number {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#content .adt-shughuli-image-frame-pilot__label {
+  top: 6.5%;
+  left: 9%;
+  width: 27%;
+  height: 24%;
+}
+
+#content .adt-shughuli-image-frame-pilot__number {
+  top: 8.2%;
+  left: 35.7%;
+  width: 7.5%;
+  height: 18.5%;
+}
+
+#content .adt-shughuli-image-frame-pilot__label [data-id],
+#content .adt-shughuli-image-frame-pilot__number [data-id] {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+}
+
+#content .adt-shughuli-image-frame-pilot__label [data-id] {
+  color: #fff !important;
+  font-size: clamp(1rem, 0.92rem + 0.45vw, 1.35rem) !important;
+}
+
+#content .adt-shughuli-image-frame-pilot__number [data-id] {
+  color: #d61770 !important;
+  font-size: clamp(1.05rem, 0.94rem + 0.55vw, 1.45rem) !important;
+}
+
+#content .adt-shughuli-image-frame-pilot__content {
+  position: absolute;
+  z-index: 1;
+  top: 37%;
+  right: 6%;
+  bottom: 10%;
+  left: 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.15rem;
+  padding: 0.6rem 1.4rem;
+}
+
+#content .adt-shughuli-image-frame-pilot__content > p {
+  margin: 0 !important;
+}
+
+@media (max-width: 640px) {
+  #content .adt-shughuli-image-frame-pilot {
+    aspect-ratio: auto;
+    margin-top: 6rem;
+    padding: 5rem 1.15rem 1.3rem;
+    border: 0.18rem solid #e91575;
+    border-radius: 1.5rem;
+    background: #fff;
+  }
+
+  #content .adt-shughuli-image-frame-pilot__art {
+    display: none;
+  }
+
+  #content .adt-shughuli-image-frame-pilot__label {
+    top: 1rem;
+    left: 1rem;
+    width: 9rem;
+    height: 2.9rem;
+    padding: 0.7rem 2.8rem 0.7rem 0.8rem;
+    border-radius: 1rem;
+    background: #ef2f74 !important;
+  }
+
+  #content [data-section-id="pg047_sec002"] .adt-shughuli-image-frame-pilot__label {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0.7rem 2.8rem 0.7rem 0.8rem !important;
+    background: #ef2f74 !important;
+  }
+
+  #content .adt-shughuli-image-frame-pilot__number {
+    top: 1.45rem;
+    left: 7.75rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: #ffe600;
+  }
+
+  #content .adt-shughuli-image-frame-pilot__label [data-id],
+  #content .adt-shughuli-image-frame-pilot__number [data-id] {
+    width: auto !important;
+    height: auto !important;
+  }
+
+  #content .adt-shughuli-image-frame-pilot__content {
+    position: static;
+    gap: 1rem;
+    padding: 0;
+  }
+}
+
+/* Page 54 safety-callout pilot: the PDF artwork stays decorative while the
+   existing live text remains available to TTS and word highlighting. */
+#content [data-section-id="pg054_sec001"] div:has(> p[data-id="pg054_n0007"]) {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 0 1 44rem;
+  align-items: center;
+  width: min(44rem, 100%);
+  max-width: 100%;
+  aspect-ratio: 1042 / 302;
+  margin-left: -5rem;
+  padding: 0.75rem 4.5rem 0.75rem 38% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent url("../images/ui/safety-callout-transparent.png") center / contain no-repeat !important;
+  box-shadow: none !important;
+}
+
+#content [data-section-id="pg054_sec001"] div:has(> p[data-id="pg054_n0007"])::before,
+#content [data-section-id="pg054_sec001"] div:has(> p[data-id="pg054_n0007"])::after {
+  display: none !important;
+}
+
+#content [data-section-id="pg054_sec001"] div:has(> p[data-id="pg054_n0007"]) > p[data-id="pg054_n0007"] {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: 0 !important;
+  color: #292524 !important;
+  font-size: clamp(1rem, 0.92rem + 0.4vw, 1.28rem) !important;
+  line-height: 1.35 !important;
+}
+
+@media (max-width: 640px) {
+  #content [data-section-id="pg054_sec001"] div:has(> p[data-id="pg054_n0007"]) {
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    margin: -0.5rem 0 0 !important;
+    padding: 1rem !important;
+    border: 0.15rem dotted #0ea5b7 !important;
+    border-radius: 1rem !important;
+    background: #fff3b0 !important;
+  }
+}
+
+/* Page 54 orange title-banner pilot. The image is decorative; the original
+   data-id remains live for narration and word highlighting. */
+#content [data-section-id="pg054_sec001"] div:has(> p[data-id="pg054_n0005"]) {
+  display: flex;
+  align-items: center;
+  width: min(42rem, 100%);
+  max-width: 100%;
+  aspect-ratio: 2109 / 125;
+  padding: 0 5rem 0 2.25rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent url("../images/ui/orange-title-banner.png") center / contain no-repeat !important;
+  box-shadow: none !important;
+}
+
+#content [data-section-id="pg054_sec001"] div:has(> p[data-id="pg054_n0005"]) > p[data-id="pg054_n0005"] {
+  width: auto !important;
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: clamp(1rem, 0.94rem + 0.32vw, 1.2rem) !important;
+  line-height: 1.1 !important;
+}
+
+@media (max-width: 640px) {
+  #content [data-section-id="pg054_sec001"] div:has(> p[data-id="pg054_n0005"]) {
+    width: fit-content;
+    min-height: 3.25rem;
+    aspect-ratio: auto;
+    padding: 0.7rem 1.4rem !important;
+    border-radius: 0 999px 999px 0 !important;
+    background: #ff6700 !important;
+    box-shadow: inset 0 0.18rem 0 #ffb06a, 0 0.18rem 0 #f04416 !important;
+  }
+}
+
+/* Scalable Zoezi layout based on the approved PDF label artwork. Long tables
+   and writing areas retain natural height; live data-id text remains intact. */
+#content section:is(
+  [data-section-id="pg010_sec001"], [data-section-id="pg014_sec002"],
+  [data-section-id="pg017_sec002"], [data-section-id="pg021_sec002"],
+  [data-section-id="pg026_sec002"], [data-section-id="pg028_sec002"],
+  [data-section-id="pg032_sec002"], [data-section-id="pg034_sec003"],
+  [data-section-id="pg038_sec002"], [data-section-id="pg042_sec002"],
+  [data-section-id="pg048_sec001"], [data-section-id="pg056_sec001"],
+  [data-section-id="pg059_sec001"], [data-section-id="pg061_sec002"],
+  [data-section-id="pg063_sec003"], [data-section-id="pg064_sec003"],
+  [data-section-id="pg067_sec001"]
+) {
+  width: min(100%, 64rem) !important;
+  margin-inline: auto !important;
+  padding: 2rem !important;
+  border: 0.16rem solid #09a8b5 !important;
+  border-radius: 1.5rem !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#content *:has(> :is(
+  [data-id="pg010_n0003"], [data-id="pg014_n0012"],
+  [data-id="pg017_n0019"], [data-id="pg021_n0009"],
+  [data-id="pg026_n0016"], [data-id="pg028_n0015"],
+  [data-id="pg032_n0016"], [data-id="pg034_n0010"],
+  [data-id="pg038_n0008"], [data-id="pg056_n0010"],
+  [data-id="pg059_n0003"], [data-id="pg061_n0010"],
+  [data-id="pg063_n0010"], [data-id="pg064_n0015"],
+  [data-id="pg067_n0003"]
+)) {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 0 1.35rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#content :is(
+  [data-id="pg010_n0003"], [data-id="pg014_n0012"],
+  [data-id="pg017_n0019"], [data-id="pg021_n0009"],
+  [data-id="pg026_n0016"], [data-id="pg028_n0015"],
+  [data-id="pg032_n0016"], [data-id="pg034_n0010"],
+  [data-id="pg038_n0008"], [data-id="pg056_n0010"],
+  [data-id="pg059_n0003"], [data-id="pg061_n0010"],
+  [data-id="pg063_n0010"], [data-id="pg064_n0015"],
+  [data-id="pg067_n0003"]
+) {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: min(100%, 30rem) !important;
+  aspect-ratio: 479 / 122;
+  margin: 0 !important;
+  padding: 0 26% 0 4% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  background: transparent url("../images/ui/zoezi-label-original.png") center / 100% 100% no-repeat !important;
+  box-shadow: none !important;
+  font-size: clamp(1rem, 0.9rem + 0.55vw, 1.35rem) !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  white-space: nowrap;
+}
+
+#content :is(
+  [data-id="pg010_n0003"], [data-id="pg014_n0012"],
+  [data-id="pg017_n0019"], [data-id="pg021_n0009"],
+  [data-id="pg026_n0016"], [data-id="pg028_n0015"],
+  [data-id="pg032_n0016"], [data-id="pg034_n0010"],
+  [data-id="pg038_n0008"], [data-id="pg056_n0010"],
+  [data-id="pg059_n0003"], [data-id="pg061_n0010"],
+  [data-id="pg063_n0010"], [data-id="pg064_n0015"],
+  [data-id="pg067_n0003"]
+) > span:last-child {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 25% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  color: #049db3 !important;
+}
+
+#content :is(
+  div:has(> [data-id="pg042_n0009"]),
+  div:has(> div > [data-id="pg048_n0002"])
+) {
+  position: relative !important;
+  display: flex !important;
+  align-items: stretch !important;
+  width: min(100%, 30rem) !important;
+  aspect-ratio: 479 / 122;
+  margin: 0 0 1.35rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent url("../images/ui/zoezi-label-original.png") center / 100% 100% no-repeat !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#content :is(
+  [data-id="pg042_n0009"], [data-id="pg042_n0020"],
+  [data-id="pg048_n0002"], [data-id="pg048_n0018"]
+) {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #fff !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: clamp(1rem, 0.9rem + 0.55vw, 1.35rem) !important;
+  font-style: italic !important;
+  line-height: 1 !important;
+}
+
+#content :is([data-id="pg042_n0009"], [data-id="pg048_n0002"]) {
+  width: 75% !important;
+  flex: 0 0 75% !important;
+}
+
+#content :is([data-id="pg042_n0020"], [data-id="pg048_n0018"]) {
+  width: 25% !important;
+  flex: 0 0 25% !important;
+  color: #049db3 !important;
+}
+
+#content [data-id="pg042_n0009"]::after {
+  display: none !important;
+}
+
+#content div:has(> :is([data-id="pg048_n0002"], [data-id="pg048_n0018"])) {
+  display: contents !important;
+}
+
+@media (max-width: 640px) {
+  #content section:is(
+    [data-section-id="pg010_sec001"], [data-section-id="pg014_sec002"],
+    [data-section-id="pg017_sec002"], [data-section-id="pg021_sec002"],
+    [data-section-id="pg026_sec002"], [data-section-id="pg028_sec002"],
+    [data-section-id="pg032_sec002"], [data-section-id="pg034_sec003"],
+    [data-section-id="pg038_sec002"], [data-section-id="pg042_sec002"],
+    [data-section-id="pg048_sec001"], [data-section-id="pg056_sec001"],
+    [data-section-id="pg059_sec001"], [data-section-id="pg061_sec002"],
+    [data-section-id="pg063_sec003"], [data-section-id="pg064_sec003"],
+    [data-section-id="pg067_sec001"]
+  ) {
+    padding: 1rem !important;
+    border-radius: 1.15rem !important;
+  }
+}
+
+/* Scalable Shughuli headings based on the approved PDF artwork. The image is
+   decorative; the existing data-id remains live for TTS and highlighting. */
+#content *:has(> :is(
+  [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+  [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+  [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+  [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+  [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+  [data-id="pg053_n0002"], [data-id="pg058_n0024"],
+  [data-id="pg063_n0013"], [data-id="pg064_n0011"],
+  [data-id="pg066_n0022"]
+)) {
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  flex: 1 1 100% !important;
+  width: min(100%, 58rem) !important;
+  max-width: 100% !important;
+  margin: 0 auto 1rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+}
+
+#content *:has(> :is(
+  [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+  [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+  [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+  [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+  [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+  [data-id="pg053_n0002"], [data-id="pg058_n0024"],
+  [data-id="pg063_n0013"], [data-id="pg064_n0011"],
+  [data-id="pg066_n0022"]
+)) > :not(:is(
+  [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+  [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+  [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+  [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+  [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+  [data-id="pg053_n0002"], [data-id="pg058_n0024"],
+  [data-id="pg063_n0013"], [data-id="pg064_n0011"],
+  [data-id="pg066_n0022"]
+)) {
+  display: none !important;
+}
+
+#content :is(
+  [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+  [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+  [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+  [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+  [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+  [data-id="pg053_n0002"], [data-id="pg058_n0024"],
+  [data-id="pg063_n0013"], [data-id="pg064_n0011"],
+  [data-id="pg066_n0022"]
+) {
+  position: relative !important;
+  inset: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.24em !important;
+  width: 100% !important;
+  max-width: 58rem !important;
+  aspect-ratio: 2048 / 265;
+  margin: 0 !important;
+  padding: 0.5% 58% 1.4% 7% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  background: transparent url("../images/ui/shughuli-header-transparent.png") center / 100% 100% no-repeat !important;
+  box-shadow: none !important;
+  transform: none !important;
+  font-size: clamp(1rem, 0.92rem + 0.55vw, 1.45rem) !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+#content :is(
+  [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+  [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+  [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+  [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+  [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+  [data-id="pg053_n0002"], [data-id="pg058_n0024"],
+  [data-id="pg063_n0013"], [data-id="pg064_n0011"],
+  [data-id="pg066_n0022"]
+) > span:last-child {
+  position: absolute !important;
+  top: 18% !important;
+  left: 35.7% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 7.6% !important;
+  height: 49% !important;
+  margin: 0 !important;
+  color: #d61770 !important;
+}
+
+/* Scalable Maswali headings based on the approved PDF artwork. Existing
+   question cards keep their natural height and all live text remains intact. */
+#content *:has(> :is(
+  [data-id="pg007_n0019"], [data-id="pg011_n0002"],
+  [data-id="pg016_n0002"], [data-id="pg018_n0020"],
+  [data-id="pg020_n0005"], [data-id="pg028_n0002"],
+  [data-id="pg031_n0003"], [data-id="pg034_n0001"],
+  [data-id="pg036_n0002"], [data-id="pg038_n0003"],
+  [data-id="pg042_n0004"], [data-id="pg043_n0015"],
+  [data-id="pg050_n0014"], [data-id="pg055_n0002"],
+  [data-id="pg057_n0017"], [data-id="pg058_n0015"],
+  [data-id="pg061_n0002"], [data-id="pg063_n0002"],
+  [data-id="pg066_n0015"], [data-id="pg069_n0022"]
+)) {
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  flex: 1 1 100% !important;
+  width: min(100%, 58rem) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 auto 1rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+}
+
+#content *:has(> :is(
+  [data-id="pg007_n0019"], [data-id="pg011_n0002"],
+  [data-id="pg016_n0002"], [data-id="pg018_n0020"],
+  [data-id="pg020_n0005"], [data-id="pg028_n0002"],
+  [data-id="pg031_n0003"], [data-id="pg034_n0001"],
+  [data-id="pg036_n0002"], [data-id="pg038_n0003"],
+  [data-id="pg042_n0004"], [data-id="pg043_n0015"],
+  [data-id="pg050_n0014"], [data-id="pg055_n0002"],
+  [data-id="pg057_n0017"], [data-id="pg058_n0015"],
+  [data-id="pg061_n0002"], [data-id="pg063_n0002"],
+  [data-id="pg066_n0015"], [data-id="pg069_n0022"]
+)) > :not(:is(
+  [data-id="pg007_n0019"], [data-id="pg011_n0002"],
+  [data-id="pg016_n0002"], [data-id="pg018_n0020"],
+  [data-id="pg020_n0005"], [data-id="pg028_n0002"],
+  [data-id="pg031_n0003"], [data-id="pg034_n0001"],
+  [data-id="pg036_n0002"], [data-id="pg038_n0003"],
+  [data-id="pg042_n0004"], [data-id="pg043_n0015"],
+  [data-id="pg050_n0014"], [data-id="pg055_n0002"],
+  [data-id="pg057_n0017"], [data-id="pg058_n0015"],
+  [data-id="pg061_n0002"], [data-id="pg063_n0002"],
+  [data-id="pg066_n0015"], [data-id="pg069_n0022"]
+)) {
+  display: none !important;
+}
+
+#content :is(
+  [data-id="pg007_n0019"], [data-id="pg011_n0002"],
+  [data-id="pg016_n0002"], [data-id="pg018_n0020"],
+  [data-id="pg020_n0005"], [data-id="pg028_n0002"],
+  [data-id="pg031_n0003"], [data-id="pg034_n0001"],
+  [data-id="pg036_n0002"], [data-id="pg038_n0003"],
+  [data-id="pg042_n0004"], [data-id="pg043_n0015"],
+  [data-id="pg050_n0014"], [data-id="pg055_n0002"],
+  [data-id="pg057_n0017"], [data-id="pg058_n0015"],
+  [data-id="pg061_n0002"], [data-id="pg063_n0002"],
+  [data-id="pg066_n0015"], [data-id="pg069_n0022"]
+) {
+  position: relative !important;
+  inset: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 58rem !important;
+  aspect-ratio: 1560 / 215;
+  margin: 0 !important;
+  padding: 0.3% 62% 1.2% 7% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #087f8f !important;
+  background: transparent url("../images/ui/maswali-header-transparent.png") center / 100% 100% no-repeat !important;
+  box-shadow: none !important;
+  transform: none !important;
+  font-size: clamp(1rem, 0.94rem + 0.5vw, 1.4rem) !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+#content [data-section-id="pg007_sec001"] div:has(> .sr-only > [data-id="pg007_n0019"]) > img[aria-hidden="true"] {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  #content :is(
+    [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+    [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+    [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+    [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+    [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+    [data-id="pg053_n0002"], [data-id="pg058_n0024"],
+    [data-id="pg063_n0013"], [data-id="pg064_n0011"],
+    [data-id="pg066_n0022"]
+  ) {
+    min-height: 3.25rem !important;
+    aspect-ratio: auto !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    padding: 0.75rem 4.5rem 0.75rem 1.25rem !important;
+    border-radius: 1rem !important;
+    background: #ef2f74 !important;
+    box-shadow: 0.3rem 0.3rem 0 #d1d5db !important;
+  }
+
+  #content :is(
+    [data-id="pg009_n0020"], [data-id="pg011_n0009"],
+    [data-id="pg014_n0005"], [data-id="pg017_n0015"],
+    [data-id="pg021_n0002"], [data-id="pg023_n0013"],
+    [data-id="pg026_n0009"], [data-id="pg028_n0010"],
+    [data-id="pg032_n0012"], [data-id="pg034_n0006"],
+    [data-id="pg053_n0002"], [data-id="pg058_n0024"],
+    [data-id="pg063_n0013"], [data-id="pg064_n0011"],
+    [data-id="pg066_n0022"]
+  ) > span:last-child {
+    top: 0.55rem !important;
+    right: 0.85rem !important;
+    left: auto !important;
+    width: 2.15rem !important;
+    height: 2.15rem !important;
+    border-radius: 999px;
+    background: #ffe600 !important;
+  }
+
+  #content :is(
+    [data-id="pg007_n0019"], [data-id="pg011_n0002"],
+    [data-id="pg016_n0002"], [data-id="pg018_n0020"],
+    [data-id="pg020_n0005"], [data-id="pg028_n0002"],
+    [data-id="pg031_n0003"], [data-id="pg034_n0001"],
+    [data-id="pg036_n0002"], [data-id="pg038_n0003"],
+    [data-id="pg042_n0004"], [data-id="pg043_n0015"],
+    [data-id="pg050_n0014"], [data-id="pg055_n0002"],
+    [data-id="pg057_n0017"], [data-id="pg058_n0015"],
+    [data-id="pg061_n0002"], [data-id="pg063_n0002"],
+    [data-id="pg066_n0015"], [data-id="pg069_n0022"]
+  ) {
+    min-height: 3.25rem !important;
+    aspect-ratio: auto !important;
+    justify-content: flex-start !important;
+    padding: 0.75rem 1.25rem !important;
+    border-bottom: 0.22rem solid #08a7b2 !important;
+    border-radius: 1rem 1rem 0 0 !important;
+    background: #cdeeed !important;
+  }
+}
+
+/* Shared orange lesson-title banner from the PDF. The artwork remains
+   decorative, while each existing data-id remains the readable live text. */
+#content *:has(> :is(
+  [data-id="pg007_n0005"], [data-id="pg008_n0002"],
+  [data-id="pg010_n0006"], [data-id="pg012_n0008"],
+  [data-id="pg015_n0026"], [data-id="pg016_n0014"],
+  [data-id="pg017_n0005"], [data-id="pg019_n0002"],
+  [data-id="pg022_n0020"], [data-id="pg025_n0002"],
+  [data-id="pg027_n0002"], [data-id="pg029_n0002"],
+  [data-id="pg031_n0010"], [data-id="pg033_n0033"],
+  [data-id="pg035_n0002"], [data-id="pg036_n0009"],
+  [data-id="pg040_n0006"], [data-id="pg042_n0016"],
+  [data-id="pg044_n0002"], [data-id="pg050_n0002"],
+  [data-id="pg051_n0002"], [data-id="pg057_n0002"],
+  [data-id="pg060_n0002"], [data-id="pg062_n0015"],
+  [data-id="pg063_n0016"], [data-id="pg065_n0005"],
+  [data-id="pg068_n0052"]
+)) {
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  flex: 1 1 100% !important;
+  width: min(100%, 52rem) !important;
+  max-width: 100% !important;
+  margin: 0 0 1.25rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+
+#content *:has(> :is(
+  [data-id="pg007_n0005"], [data-id="pg008_n0002"],
+  [data-id="pg010_n0006"], [data-id="pg012_n0008"],
+  [data-id="pg015_n0026"], [data-id="pg016_n0014"],
+  [data-id="pg017_n0005"], [data-id="pg019_n0002"],
+  [data-id="pg022_n0020"], [data-id="pg025_n0002"],
+  [data-id="pg027_n0002"], [data-id="pg029_n0002"],
+  [data-id="pg031_n0010"], [data-id="pg033_n0033"],
+  [data-id="pg035_n0002"], [data-id="pg036_n0009"],
+  [data-id="pg040_n0006"], [data-id="pg042_n0016"],
+  [data-id="pg044_n0002"], [data-id="pg050_n0002"],
+  [data-id="pg051_n0002"], [data-id="pg057_n0002"],
+  [data-id="pg060_n0002"], [data-id="pg062_n0015"],
+  [data-id="pg063_n0016"], [data-id="pg065_n0005"],
+  [data-id="pg068_n0052"]
+)) > :not(:is(
+  [data-id="pg007_n0005"], [data-id="pg008_n0002"],
+  [data-id="pg010_n0006"], [data-id="pg012_n0008"],
+  [data-id="pg015_n0026"], [data-id="pg016_n0014"],
+  [data-id="pg017_n0005"], [data-id="pg019_n0002"],
+  [data-id="pg022_n0020"], [data-id="pg025_n0002"],
+  [data-id="pg027_n0002"], [data-id="pg029_n0002"],
+  [data-id="pg031_n0010"], [data-id="pg033_n0033"],
+  [data-id="pg035_n0002"], [data-id="pg036_n0009"],
+  [data-id="pg040_n0006"], [data-id="pg042_n0016"],
+  [data-id="pg044_n0002"], [data-id="pg050_n0002"],
+  [data-id="pg051_n0002"], [data-id="pg057_n0002"],
+  [data-id="pg060_n0002"], [data-id="pg062_n0015"],
+  [data-id="pg063_n0016"], [data-id="pg065_n0005"],
+  [data-id="pg068_n0052"]
+)) {
+  display: none !important;
+}
+
+#content :is(
+  [data-id="pg007_n0005"], [data-id="pg008_n0002"],
+  [data-id="pg010_n0006"], [data-id="pg012_n0008"],
+  [data-id="pg015_n0026"], [data-id="pg016_n0014"],
+  [data-id="pg017_n0005"], [data-id="pg019_n0002"],
+  [data-id="pg022_n0020"], [data-id="pg025_n0002"],
+  [data-id="pg027_n0002"], [data-id="pg029_n0002"],
+  [data-id="pg031_n0010"], [data-id="pg033_n0033"],
+  [data-id="pg035_n0002"], [data-id="pg036_n0009"],
+  [data-id="pg040_n0006"], [data-id="pg042_n0016"],
+  [data-id="pg044_n0002"], [data-id="pg050_n0002"],
+  [data-id="pg051_n0002"], [data-id="pg057_n0002"],
+  [data-id="pg060_n0002"], [data-id="pg062_n0015"],
+  [data-id="pg063_n0016"], [data-id="pg065_n0005"],
+  [data-id="pg068_n0052"]
+) {
+  position: relative !important;
+  inset: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 52rem !important;
+  aspect-ratio: 2109 / 125;
+  margin: 0 !important;
+  padding: 0 5.5rem 0 2rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  background: transparent url("../images/ui/orange-title-banner.png") center / 100% 100% no-repeat !important;
+  box-shadow: none !important;
+  transform: none !important;
+  font-size: clamp(0.95rem, 0.9rem + 0.32vw, 1.18rem) !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  text-align: left !important;
+  word-spacing: 0.32rem !important;
+  white-space: nowrap !important;
+}
+
+#content :is(
+  [data-id="pg007_n0005"], [data-id="pg008_n0002"],
+  [data-id="pg010_n0006"], [data-id="pg012_n0008"],
+  [data-id="pg015_n0026"], [data-id="pg016_n0014"],
+  [data-id="pg017_n0005"], [data-id="pg019_n0002"],
+  [data-id="pg022_n0020"], [data-id="pg025_n0002"],
+  [data-id="pg027_n0002"], [data-id="pg029_n0002"],
+  [data-id="pg031_n0010"], [data-id="pg033_n0033"],
+  [data-id="pg035_n0002"], [data-id="pg036_n0009"],
+  [data-id="pg040_n0006"], [data-id="pg042_n0016"],
+  [data-id="pg044_n0002"], [data-id="pg050_n0002"],
+  [data-id="pg051_n0002"], [data-id="pg057_n0002"],
+  [data-id="pg060_n0002"], [data-id="pg062_n0015"],
+  [data-id="pg063_n0016"], [data-id="pg065_n0005"],
+  [data-id="pg068_n0052"]
+) > [data-word-index] + [data-word-index] {
+  margin-left: 0.32rem !important;
+}
+
+/* Shared pale-yellow callout used beside the cat guide. These selectors
+   target only the nearest callout wrapper, never the surrounding lesson. */
+#content :is(
+  div:has(> p[data-id="pg008_n0004"]),
+  div:has(> p[data-id="pg010_n0008"]),
+  div:has(> p[data-id="pg015_n0028"]),
+  div:has(> p[data-id="pg016_n0016"]),
+  div:has(> span[data-id="pg017_n0007"]),
+  div:has(> p[data-id="pg025_n0004"]),
+  div:has(> p[data-id="pg027_n0004"]),
+  div:has(> span[data-id="pg031_n0012"]),
+  div:has(> p[data-id="pg036_n0012"]),
+  div:has(> p[data-id="pg042_n0018"]),
+  div:has(> p[data-id="pg044_n0004"]),
+  div:has(> p[data-id="pg050_n0004"]),
+  div:has(> span[data-id="pg057_n0004"]),
+  div:has(> p[data-id="pg062_n0017"]),
+  div:has(> p[data-id="pg063_n0018"]),
+  div:has(> p[data-id="pg065_n0007"]),
+  div:has(> span[data-id="pg068_n0054"]),
+  div:has(> p > span[data-id="pg007_n0008"]),
+  div:has(> p > span[data-id="pg019_n0004"]),
+  div:has(> p > span[data-id="pg022_n0022"]),
+  div:has(> p > span[data-id="pg029_n0004"]),
+  div:has(> p > span[data-id="pg033_n0035"]),
+  div:has(> p > span[data-id="pg035_n0004"]),
+  div:has(> p > span[data-id="pg040_n0008"]),
+  div:has(> p > span[data-id="pg051_n0004"]),
+  div:has(> p > span[data-id="pg060_n0004"])
+) {
+  position: relative !important;
+  z-index: 1;
+  display: flex !important;
+  flex: 0 1 44rem !important;
+  align-items: center !important;
+  width: min(44rem, 100%) !important;
+  max-width: 100% !important;
+  aspect-ratio: 1042 / 302;
+  margin: 0 !important;
+  padding: 0.75rem 4.5rem 0.75rem 38% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent url("../images/ui/safety-callout-transparent.png") center / contain no-repeat !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#content :is(
+  div:has(> p[data-id="pg008_n0004"]),
+  div:has(> p[data-id="pg010_n0008"]),
+  div:has(> p[data-id="pg015_n0028"]),
+  div:has(> p[data-id="pg016_n0016"]),
+  div:has(> span[data-id="pg017_n0007"]),
+  div:has(> p[data-id="pg025_n0004"]),
+  div:has(> p[data-id="pg027_n0004"]),
+  div:has(> span[data-id="pg031_n0012"]),
+  div:has(> p[data-id="pg036_n0012"]),
+  div:has(> p[data-id="pg042_n0018"]),
+  div:has(> p[data-id="pg044_n0004"]),
+  div:has(> p[data-id="pg050_n0004"]),
+  div:has(> span[data-id="pg057_n0004"]),
+  div:has(> p[data-id="pg062_n0017"]),
+  div:has(> p[data-id="pg063_n0018"]),
+  div:has(> p[data-id="pg065_n0007"]),
+  div:has(> span[data-id="pg068_n0054"]),
+  div:has(> p > span[data-id="pg007_n0008"]),
+  div:has(> p > span[data-id="pg019_n0004"]),
+  div:has(> p > span[data-id="pg022_n0022"]),
+  div:has(> p > span[data-id="pg029_n0004"]),
+  div:has(> p > span[data-id="pg033_n0035"]),
+  div:has(> p > span[data-id="pg035_n0004"]),
+  div:has(> p > span[data-id="pg040_n0008"]),
+  div:has(> p > span[data-id="pg051_n0004"]),
+  div:has(> p > span[data-id="pg060_n0004"])
+) > [aria-hidden="true"] {
+  display: none !important;
+}
+
+#content :is(
+  [data-id="pg007_n0008"], [data-id="pg008_n0004"],
+  [data-id="pg010_n0008"], [data-id="pg015_n0028"],
+  [data-id="pg016_n0016"], [data-id="pg017_n0007"],
+  [data-id="pg019_n0004"], [data-id="pg022_n0022"],
+  [data-id="pg025_n0004"], [data-id="pg027_n0004"],
+  [data-id="pg029_n0004"], [data-id="pg031_n0012"],
+  [data-id="pg033_n0035"], [data-id="pg035_n0004"],
+  [data-id="pg035_n0005"], [data-id="pg036_n0012"],
+  [data-id="pg040_n0008"], [data-id="pg042_n0018"],
+  [data-id="pg044_n0004"], [data-id="pg050_n0004"],
+  [data-id="pg051_n0004"], [data-id="pg057_n0004"],
+  [data-id="pg060_n0004"], [data-id="pg062_n0017"],
+  [data-id="pg063_n0018"], [data-id="pg065_n0007"],
+  [data-id="pg068_n0054"]
+) {
+  position: relative !important;
+  z-index: 2;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #292524 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: clamp(0.95rem, 0.9rem + 0.38vw, 1.22rem) !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+}
+
+@media (max-width: 640px) {
+  #content :is(
+    [data-id="pg007_n0005"], [data-id="pg008_n0002"],
+    [data-id="pg010_n0006"], [data-id="pg012_n0008"],
+    [data-id="pg015_n0026"], [data-id="pg016_n0014"],
+    [data-id="pg017_n0005"], [data-id="pg019_n0002"],
+    [data-id="pg022_n0020"], [data-id="pg025_n0002"],
+    [data-id="pg027_n0002"], [data-id="pg029_n0002"],
+    [data-id="pg031_n0010"], [data-id="pg033_n0033"],
+    [data-id="pg035_n0002"], [data-id="pg036_n0009"],
+    [data-id="pg040_n0006"], [data-id="pg042_n0016"],
+    [data-id="pg044_n0002"], [data-id="pg050_n0002"],
+    [data-id="pg051_n0002"], [data-id="pg057_n0002"],
+    [data-id="pg060_n0002"], [data-id="pg062_n0015"],
+    [data-id="pg063_n0016"], [data-id="pg065_n0005"],
+    [data-id="pg068_n0052"]
+  ) {
+    min-height: 3.25rem !important;
+    aspect-ratio: auto !important;
+    flex-wrap: wrap !important;
+    row-gap: 0.1rem !important;
+    padding: 0.7rem 1.35rem !important;
+    border-radius: 0 999px 999px 0 !important;
+    background: #ff6700 !important;
+    box-shadow: inset 0 0.18rem 0 #ffb06a, 0 0.18rem 0 #f04416 !important;
+    white-space: normal !important;
+  }
+
+  #content :is(
+    div:has(> p[data-id="pg008_n0004"]),
+    div:has(> p[data-id="pg010_n0008"]),
+    div:has(> p[data-id="pg015_n0028"]),
+    div:has(> p[data-id="pg016_n0016"]),
+    div:has(> span[data-id="pg017_n0007"]),
+    div:has(> p[data-id="pg025_n0004"]),
+    div:has(> p[data-id="pg027_n0004"]),
+    div:has(> span[data-id="pg031_n0012"]),
+    div:has(> p[data-id="pg036_n0012"]),
+    div:has(> p[data-id="pg042_n0018"]),
+    div:has(> p[data-id="pg044_n0004"]),
+    div:has(> p[data-id="pg050_n0004"]),
+    div:has(> span[data-id="pg057_n0004"]),
+    div:has(> p[data-id="pg062_n0017"]),
+    div:has(> p[data-id="pg063_n0018"]),
+    div:has(> p[data-id="pg065_n0007"]),
+    div:has(> span[data-id="pg068_n0054"]),
+    div:has(> p > span[data-id="pg007_n0008"]),
+    div:has(> p > span[data-id="pg019_n0004"]),
+    div:has(> p > span[data-id="pg022_n0022"]),
+    div:has(> p > span[data-id="pg029_n0004"]),
+    div:has(> p > span[data-id="pg033_n0035"]),
+    div:has(> p > span[data-id="pg035_n0004"]),
+    div:has(> p > span[data-id="pg040_n0008"]),
+    div:has(> p > span[data-id="pg051_n0004"]),
+    div:has(> p > span[data-id="pg060_n0004"])
+  ) {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    min-height: 0;
+    aspect-ratio: auto !important;
+    margin: 0 !important;
+    padding: 1rem !important;
+    border: 0.15rem dotted #0ea5b7 !important;
+    border-radius: 1rem !important;
+    background: #fff3b0 !important;
+  }
+}
+
+/* Remove obsolete full-width colour strips behind the new shared banners. */
+#content :is(
+  [data-section-id="pg016_sec001"],
+  [data-section-id="pg044_sec001"],
+  [data-section-id="pg050_sec001"],
+  [data-section-id="pg062_sec001"],
+  [data-section-id="pg021_sec001"]
+) > div:first-child {
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Keep the long Page 6 introduction steady as read-aloud advances word by word. */
+[data-section-id="pg006_sec001"] span[data-word-index].bg-yellow-300 {
+  margin: 0 !important;
+  padding: 0 !important;
+  transition: none !important;
+}
+
+/* Page 8 follows the compact portrait composition used in the source book. */
+[data-section-id="pg008_sec001"] {
+  width: min(100%, 52rem);
+}
+
+[data-section-id="pg008_sec001"] [data-id="pg008_n0002"] {
+  word-spacing: 0.32rem !important;
+}
+
+[data-section-id="pg008_sec001"] div:has(> p[data-id="pg008_n0004"]) {
+  flex-basis: 32rem !important;
+  width: min(32rem, 100%) !important;
+}
+
+[data-section-id="pg008_sec001"] div.grid:has(img[data-id="pg008_im004"]) {
+  width: min(100%, 32rem);
+  margin-inline: auto;
+}
+
+@media (min-width: 641px) {
+  /* Page 57 crops the yellow tail and positions the live label independently. */
+  #content [data-section-id="pg057_sec001"] .pg057-maswali-art {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 58rem !important;
+    aspect-ratio: 1560 / 180 !important;
+    margin: 0 auto 1rem !important;
+    padding: 0 !important;
+    background: transparent url("../images/ui/maswali-header-transparent.png") center top / 100% auto no-repeat !important;
+    overflow: hidden !important;
+  }
+
+  #content [data-section-id="pg057_sec001"] .pg057-maswali-art > [data-id="pg057_n0017"] {
+    position: absolute !important;
+    inset: 48% auto auto 9% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 27% !important;
+    height: 36% !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    font-size: 1.25rem !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+  }
 }
