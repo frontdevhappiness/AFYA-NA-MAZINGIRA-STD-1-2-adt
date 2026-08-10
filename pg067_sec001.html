@@ -10,6 +10,51 @@
     <link href="./content/tailwind_output.css" rel="stylesheet">
     <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./assets/fonts.css" rel="stylesheet">
+    <style>
+      @media (max-width: 639px) {
+        section[data-section-id="pg067_sec001"] > div:first-child > div {
+          width: fit-content !important;
+          max-width: 100%;
+        }
+
+        section[data-section-id="pg067_sec001"] > div:first-child [data-id="pg067_n0003"] {
+          font-size: 1.25rem;
+          padding: 0.65rem 1.25rem;
+        }
+
+        section[data-section-id="pg067_sec001"] .overflow-x-auto {
+          overflow-x: visible;
+        }
+
+        section[data-section-id="pg067_sec001"] table {
+          min-width: 0 !important;
+        }
+
+        section[data-section-id="pg067_sec001"] table th,
+        section[data-section-id="pg067_sec001"] table td {
+          padding: 0.4rem;
+        }
+
+        section[data-section-id="pg067_sec001"] table td:first-child > div {
+          gap: 0.25rem;
+          padding: 0;
+        }
+
+        section[data-section-id="pg067_sec001"] table td:first-child span {
+          width: 1.75rem;
+        }
+
+        section[data-section-id="pg067_sec001"] table td img {
+          max-height: 7rem;
+          max-width: calc(100% - 2rem) !important;
+          width: auto !important;
+        }
+
+        section[data-section-id="pg067_sec001"] table td:last-child {
+          overflow-wrap: anywhere;
+        }
+      }
+    </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center">
@@ -163,7 +208,7 @@
     <div class="relative z-50" id="interface-container"></div>
     <div class="relative z-50" id="nav-container"></div>
     <script src="./assets/accessible-feedback.js?v=5" defer></script>
-    <script src="./assets/offline-preloader.js?v=pg067-drop-fields-removed-20260810"></script>
+    <script src="./assets/offline-preloader.js?v=pg067-responsive-table-20260810"></script>
     <script src="./assets/scorm.js"></script>
     <script src="./assets/base.bundle.local.js"></script>
 </body>
