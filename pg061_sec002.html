@@ -10,6 +10,45 @@
     <link href="./content/tailwind_output.css" rel="stylesheet">
     <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./assets/fonts.css" rel="stylesheet">
+    <style>
+      @media (max-width: 639px) {
+        section[data-section-id="pg061_sec002"] table {
+          display: table !important;
+          table-layout: fixed;
+        }
+
+        section[data-section-id="pg061_sec002"] table + div {
+          display: none !important;
+        }
+
+        section[data-section-id="pg061_sec002"] table th:first-child {
+          width: 13%;
+        }
+
+        section[data-section-id="pg061_sec002"] table th:nth-child(2) {
+          width: 59%;
+        }
+
+        section[data-section-id="pg061_sec002"] table th:nth-child(3) {
+          width: 28%;
+        }
+
+        section[data-section-id="pg061_sec002"] table th,
+        section[data-section-id="pg061_sec002"] table td {
+          padding: 0.4rem;
+        }
+
+        section[data-section-id="pg061_sec002"] table td img {
+          max-height: 8rem;
+          width: auto !important;
+        }
+
+        section[data-section-id="pg061_sec002"] table input {
+          height: 3rem;
+          width: 3.5rem;
+        }
+      }
+    </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center">
@@ -167,7 +206,7 @@
     <div class="relative z-50" id="interface-container"></div>
     <div class="relative z-50" id="nav-container"></div>
     <script src="./assets/accessible-feedback.js?v=5" defer></script>
-    <script src="./assets/offline-preloader.js"></script>
+    <script src="./assets/offline-preloader.js?v=pg061-stable-table-20260810"></script>
     <script src="./assets/scorm.js"></script>
     <script src="./assets/base.bundle.local.js"></script>
 </body>
