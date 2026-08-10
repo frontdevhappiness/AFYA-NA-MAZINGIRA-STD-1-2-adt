@@ -10,6 +10,63 @@
     <link href="./content/tailwind_output.css" rel="stylesheet">
     <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./assets/fonts.css" rel="stylesheet">
+    <style>
+      @media (max-width: 639px) {
+        #pg032-match-table {
+          display: block !important;
+        }
+
+        #pg032-match-mobile {
+          display: none !important;
+        }
+
+        #pg032-match-table col:first-child {
+          width: 15% !important;
+        }
+
+        #pg032-match-table col:nth-child(2),
+        #pg032-match-table col:nth-child(3) {
+          width: 42.5% !important;
+        }
+
+        #pg032-match-table th,
+        #pg032-match-table td {
+          padding: 0.4rem;
+        }
+
+        #pg032-match-table img {
+          max-height: 9rem;
+          width: auto !important;
+        }
+
+        #pg032-match-table .gap-3 {
+          gap: 0.25rem;
+        }
+
+        #pg032-answer-table col:first-child {
+          width: 34% !important;
+        }
+
+        #pg032-answer-table col:not(:first-child) {
+          width: 22% !important;
+        }
+
+        #pg032-answer-table th,
+        #pg032-answer-table td {
+          padding: 0.4rem;
+        }
+
+        #pg032-answer-table th:first-child {
+          font-size: 0.875rem;
+          white-space: nowrap;
+        }
+
+        #pg032-answer-table input {
+          min-width: 0;
+          padding: 0.4rem;
+        }
+      }
+    </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center">
@@ -35,7 +92,7 @@
 <span data-id="pg032_use_c">C. Kusugua kucha kwa kutumia brashi.</span>
 </div>
 <div class="rounded-[1.75rem] border-2 border-cyan-500 p-6 max-sm:p-3">
-<div class="mb-6 max-sm:hidden">
+<div id="pg032-match-table" class="mb-6 max-sm:hidden">
 <table class="w-full border-collapse table-fixed" aria-hidden="true">
 <caption class="sr-only">Jedwali la kuoanisha vifaa na kazi zake.</caption>
 <colgroup>
@@ -98,7 +155,7 @@
 </tr>
 </table>
 </div>
-<div class="hidden max-sm:block mb-5 space-y-4" aria-hidden="true">
+<div id="pg032-match-mobile" class="hidden max-sm:block mb-5 space-y-4" aria-hidden="true">
 <div class="rounded-2xl border border-cyan-500 overflow-hidden">
 <div class="grid grid-cols-[3.2rem_1fr] border-b border-cyan-500">
 <div class="bg-cyan-200 p-3 font-bold">
@@ -155,7 +212,7 @@
 </div>
 </div>
 <div>
-<table class="w-full border-collapse table-fixed">
+<table id="pg032-answer-table" class="w-full border-collapse table-fixed">
 <caption class="sr-only">
 <span data-id="pg032_tbl002">Jedwali la majibu.</span>
 </caption>
@@ -209,7 +266,7 @@
 </div>
     <script src="./assets/accessible-feedback.js?v=5" defer>
 </script>
-    <script src="./assets/offline-preloader.js?v=pg032-answer-table-v4-20260810">
+    <script src="./assets/offline-preloader.js?v=pg032-stable-columns-20260810">
 </script>
     <script src="./assets/scorm.js">
 </script>
