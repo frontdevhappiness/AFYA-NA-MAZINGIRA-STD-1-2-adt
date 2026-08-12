@@ -11,10 +11,38 @@
     <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./assets/fonts.css" rel="stylesheet">
     <style>
-      #content [data-section-id="pg015_sec001"] [data-id="pg016_n0002"] {
-        aspect-ratio: 1560 / 180 !important;
-        background-position: center top !important;
-        background-size: 100% auto !important;
+      @media (min-width: 641px) {
+        #content [data-section-id="pg015_sec001"] .pg015-maswali-art {
+          position: relative !important;
+          display: block !important;
+          width: 100% !important;
+          max-width: 58rem !important;
+          aspect-ratio: 1560 / 180 !important;
+          margin: 0 auto 1rem !important;
+          background: transparent url("images/ui/maswali-header-transparent.png") center top / 100% auto no-repeat !important;
+          overflow: hidden !important;
+        }
+
+        #content [data-section-id="pg015_sec001"] .pg015-maswali-art > [data-id="pg016_n0002"] {
+          position: absolute !important;
+          inset: 42% auto auto 8% !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          width: 27% !important;
+          height: 38% !important;
+          min-height: 0 !important;
+          aspect-ratio: auto !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          border: 0 !important;
+          background: transparent !important;
+          box-shadow: none !important;
+          overflow: hidden !important;
+          font-size: 1.25rem !important;
+          line-height: 1.15 !important;
+          white-space: nowrap !important;
+        }
       }
     </style>
 </head>
@@ -91,11 +119,8 @@
 
 <div class="mx-auto w-full pb-28">
 
-  <div class="mb-4 flex items-center gap-3 max-sm:gap-2">
-    <div class="rounded-r-3xl rounded-l-xl bg-cyan-300 px-6 py-2">
-      <span data-id="pg016_n0002" class="adt-h3 font-bold italic text-cyan-800">Maswali</span>
-    </div>
-    <div class="h-4 flex-1 rounded-full bg-cyan-500 max-sm:hidden"></div>
+  <div class="pg015-maswali-art mb-4">
+    <span data-id="pg016_n0002" class="adt-h3 font-bold italic text-cyan-800">Maswali</span>
   </div>
 
   <div class="rounded-[2rem] border-2 border-cyan-300 bg-yellow-50 px-6 py-5 max-sm:px-4">
@@ -131,7 +156,7 @@
     <div class="relative z-50" id="interface-container"></div>
     <div class="relative z-50" id="nav-container"></div>
     <script src="./assets/accessible-feedback.js?v=5" defer></script>
-    <script src="./assets/offline-preloader.js?v=pg015-header-cleanup-20260812"></script>
+    <script src="./assets/offline-preloader.js?v=pg015-maswali-label-20260812"></script>
     <script src="./assets/scorm.js"></script>
     <script src="./assets/base.bundle.local.js"></script>
 </body>
