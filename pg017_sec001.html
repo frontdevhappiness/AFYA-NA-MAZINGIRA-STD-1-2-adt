@@ -20,7 +20,49 @@
       }
 
       #content [data-section-id="pg017_sec001"] [data-id="pg017_n0015"] {
-        background-image: url("./images/ui/shughuli-header-transparent.png?v=blank-badge-20260812") !important;
+        background-image: url("./images/ui/shughuli-header-blank-20260812.png") !important;
+      }
+
+      @media (min-width: 641px) {
+        #content [data-section-id="pg017_sec001"] [data-id="pg017_n0015"] {
+          padding-right: 65% !important;
+          padding-left: 5% !important;
+          gap: 0.12em !important;
+          font-size: clamp(0.9rem, 0.84rem + 0.25vw, 1.1rem) !important;
+        }
+
+        #content [data-section-id="pg017_sec001"] [data-id="pg017_n0015"] > span:last-child,
+        #content [data-section-id="pg017_sec001"] [data-id="pg017_n0015"] > .pg017-activity-number {
+          left: 35.25% !important;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        #content [data-section-id="pg017_sec001"] .pg017-activity-card {
+          padding-top: 1.25rem !important;
+        }
+
+        #content [data-section-id="pg017_sec001"] .pg017-heading-wrap {
+          position: relative !important;
+          top: auto !important;
+          left: auto !important;
+          margin: 1rem auto 1.25rem !important;
+          transform: none !important;
+        }
+      }
+
+      @media (min-width: 641px) and (max-width: 1024px) {
+        #content [data-section-id="pg017_sec001"] .pg017-heading-wrap {
+          width: calc(100% - 2rem) !important;
+          max-width: 58rem !important;
+        }
+      }
+
+      @media (max-width: 640px) {
+        #content [data-section-id="pg017_sec001"] .pg017-heading-wrap {
+          width: 22rem !important;
+          max-width: calc(100% - 2rem) !important;
+        }
       }
     </style>
 </head>
@@ -28,38 +70,15 @@
 <body class="min-h-screen flex items-center justify-center">
     <main class="w-full">
       <h1 class="sr-only" id="page-heading">Afya na Mazingira</h1>
-      <div id="content" class="container mx-auto opacity-0"><section data-section-type="text_and_images" data-section-id="pg017_sec001" class="w-full bg-white"><div class="mx-auto w-full max-w-5xl px-8 py-10 max-sm:px-5"><div class="relative rounded-[1.75rem] border-4 border-pink-500 bg-white px-8 pb-8 pt-16 shadow-[0_10px_24px_rgba(236,72,153,0.10)] max-sm:px-5 max-sm:pb-6 max-sm:pt-14"><div class="absolute left-10 top-0 -translate-y-1/2 -rotate-2 max-sm:left-5"><div class="rounded-[1.2rem] bg-pink-500 px-6 py-3 text-white shadow-[6px_6px_0_rgba(0,0,0,0.18)]"><p data-id="pg017_n0015" class="adt-h2 font-extrabold text-white">Shughuli ya <span class="pg017-activity-number">4</span></p></div></div><div class="rounded-[1.5rem] border-2 border-cyan-400 bg-white px-6 py-6 max-sm:px-5 max-sm:py-5"><div class="space-y-4 text-slate-800"><p class="adt-body leading-8"><span data-id="pg017_n0016">(a) Angalia au chunguza mtandaoni video inayoonesha hatua za kusafisha masikio.</span></p><p class="adt-body leading-8"><span data-id="pg017_n0017">(b) Safisha masikio yako kwa kufuata hatua ulizojifunza.</span></p></div></div></div></div></section></div>
+      <div id="content" class="container mx-auto opacity-0"><section data-section-type="text_and_images" data-section-id="pg017_sec001" class="w-full bg-white"><div class="mx-auto w-full max-w-5xl px-8 py-10 max-sm:px-5"><div class="pg017-activity-card relative rounded-[1.75rem] border-4 border-pink-500 bg-white px-8 pb-8 pt-16 shadow-[0_10px_24px_rgba(236,72,153,0.10)] max-sm:px-5 max-sm:pb-6 max-sm:pt-14"><div class="pg017-heading-wrap absolute left-10 top-0 -translate-y-1/2 -rotate-2 max-sm:left-5"><div class="rounded-[1.2rem] bg-pink-500 px-6 py-3 text-white shadow-[6px_6px_0_rgba(0,0,0,0.18)]"><p data-id="pg017_n0015" class="adt-h2 font-extrabold text-white">Shughuli ya 4</p></div></div><div class="rounded-[1.5rem] border-2 border-cyan-400 bg-white px-6 py-6 max-sm:px-5 max-sm:py-5"><div class="space-y-4 text-slate-800"><p class="adt-body leading-8"><span data-id="pg017_n0016">(a) Angalia au chunguza mtandaoni video inayoonesha hatua za kusafisha masikio.</span></p><p class="adt-body leading-8"><span data-id="pg017_n0017">(b) Safisha masikio yako kwa kufuata hatua ulizojifunza.</span></p></div></div></div></div></section></div>
     </main>
 
     <div class="relative z-50" id="interface-container"></div>
     <div class="relative z-50" id="nav-container"></div>
-    <script src="./assets/offline-preloader.js?v=pg017-activity-number-upright-20260812"></script>
+    <script src="./assets/offline-preloader.js?v=pg017-responsive-header-classes-20260812"></script>
     <script src="./assets/scorm.js"></script>
     <script src="./assets/base.bundle.local.js"></script>
-    <script>
-      (() => {
-        const heading = document.querySelector('[data-id="pg017_n0015"]');
-        if (!heading) return;
-
-        const wrapActivityNumber = () => {
-          if (heading.children.length) return;
-          const match = heading.textContent.trim().match(/^(.*\S)\s+4$/);
-          if (!match) return;
-          heading.textContent = `${match[1]} `;
-          const number = document.createElement('span');
-          number.className = 'pg017-activity-number';
-          number.textContent = '4';
-          heading.append(number);
-        };
-
-        new MutationObserver(wrapActivityNumber).observe(heading, {
-          childList: true,
-          characterData: true,
-          subtree: true
-        });
-        wrapActivityNumber();
-      })();
-    </script>
+    <script src="./assets/pg017-heading-number.js?v=2"></script>
 </body>
 
 </html>
