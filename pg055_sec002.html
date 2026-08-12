@@ -10,11 +10,21 @@
     <link href="./content/tailwind_output.css" rel="stylesheet">
     <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./assets/fonts.css" rel="stylesheet">
+    <style>
+      #content [data-section-id="pg055_sec002"] textarea {
+        height: 3.5rem !important;
+        min-height: 3.5rem !important;
+      }
+
+      #content [data-section-id="pg055_sec002"] .adt-maswali-image-frame-pilot__content > div + div {
+        margin-top: 0.75rem !important;
+      }
+    </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center">
     <main class="w-full">
-      <div id="content" class="container mx-auto opacity-0"><section data-section-type="boxed_text" data-section-id="pg055_sec002" class="mx-auto w-full max-w-5xl px-8 max-sm:px-5 py-8 bg-white text-slate-800">
+      <div id="content" class="container mx-auto opacity-0"><section data-section-type="activity_open_ended_answer" data-section-id="pg055_sec002" class="mx-auto w-full max-w-5xl px-8 max-sm:px-5 pt-8 pb-32 bg-white text-slate-800">
   <div class="mb-8">
     <p data-id="pg055_n0007" class="adt-body mb-6 text-left italic text-slate-700">Imba wimbo ufuatao, kisha jibu maswali yanayofuata.</p>
     <div class="adt-song-panel" aria-label="Wimbo">
@@ -44,8 +54,14 @@
       <h2 data-id="pg056_n0002" class="adt-h3 font-bold">Maswali</h2>
     </div>
     <div class="adt-maswali-image-frame-pilot__content">
-      <p class="adt-body"><span data-id="pg056_n0024">1.</span> <span data-id="pg056_n0005">Taja vitu hatarishi ulivyovisikia katika wimbo.</span></p>
-      <p class="adt-body"><span data-id="pg056_n0007">2. Je, ni madhara gani utapata endapo utachezea vitu hatarishi?</span></p>
+      <div>
+        <p class="adt-body"><span data-id="pg056_n0024">1.</span> <span data-id="pg056_n0005">Taja vitu hatarishi ulivyovisikia katika wimbo.</span></p>
+        <textarea rows="2" class="mt-3 w-full resize-y rounded-2xl border-2 border-cyan-300 bg-white p-4 text-slate-800 outline-none focus:border-cyan-500" data-aria-id="aria-1-0-0" aria-label="Jibu la swali la kwanza kuhusu vitu hatarishi vilivyotajwa katika wimbo" tabindex="0"></textarea>
+      </div>
+      <div class="mt-5">
+        <p class="adt-body"><span data-id="pg056_n0007">2. Je, ni madhara gani utapata endapo utachezea vitu hatarishi?</span></p>
+        <textarea rows="2" class="mt-3 w-full resize-y rounded-2xl border-2 border-cyan-300 bg-white p-4 text-slate-800 outline-none focus:border-cyan-500" data-aria-id="aria-1-0-1" aria-label="Jibu la swali la pili kuhusu madhara ya kuchezea vitu hatarishi" tabindex="0"></textarea>
+      </div>
     </div>
   </div>
 </section></div>
@@ -53,7 +69,7 @@
 
     <div class="relative z-50" id="interface-container"></div>
     <div class="relative z-50" id="nav-container"></div>
-    <script src="./assets/offline-preloader.js"></script>
+    <script src="./assets/offline-preloader.js?v=pg055-sec002-answer-areas-20260812"></script>
     <script src="./assets/scorm.js"></script>
     <script src="./assets/base.bundle.local.js"></script>
 </body>
