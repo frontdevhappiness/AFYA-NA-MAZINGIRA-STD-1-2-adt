@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Afya na Mazingira Darasa la Kwanza — Jalada</title>
-  <meta name="title-id" content="cover_sec001">
+  <title>Afya na Mazingira Darasa la Kwanza — Jalada la nyuma</title>
+  <meta name="title-id" content="back_cover_sec001">
   <meta name="page-section-id" content="0">
   <link href="./content/tailwind_output.css" rel="stylesheet">
   <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@
       min-height:calc(100vh - var(--dock));
       padding:clamp(.5rem,2vw,1.5rem) clamp(.5rem,3vw,2rem) calc(var(--dock) + clamp(1rem,3vw,2rem));
     }
-    .front-cover {
+    .back-cover {
       display:block;
       width:auto;
       max-width:min(100%,44rem);
@@ -32,15 +32,15 @@
     }
     @media (max-width:44rem) {
       .cover-shell { padding:.5rem .5rem calc(var(--dock) + .5rem); }
-      .front-cover { box-shadow:none; }
+      .back-cover { box-shadow:none; }
     }
   </style>
 </head>
 <body>
   <main id="content" class="cover-shell">
-    <section data-section-id="cover_sec001" aria-label="Jalada la mbele">
-      <img class="front-cover" src="images/afya_na_mazingira_darasa_la_kwanza_front_cover.png"
-        alt="Jalada la mbele la Afya na Mazingira, Kitabu cha Mwanafunzi Darasa la Kwanza. Linaonyesha mvulana akisafisha mazingira na msichana akipiga mswaki. Kimechapishwa na Taasisi ya Elimu Tanzania.">
+    <section data-section-id="back_cover_sec001" aria-label="Jalada la nyuma">
+      <img class="back-cover" src="images/afya_na_mazingira_darasa_la_kwanza_back_cover.png"
+        alt="Jalada la nyuma la Afya na Mazingira, Kitabu cha Mwanafunzi Darasa la Kwanza. Linaonyesha vitabu vingine vya Darasa la Kwanza vilivyochapishwa na Taasisi ya Elimu Tanzania pamoja na msimbo pau wa ISBN 978-9987-09-885-9.">
     </section>
   </main>
   <div class="relative z-50" id="interface-container"></div>
@@ -50,11 +50,11 @@
   <script src="./assets/sign-language-sync.js?v=1"></script>
   <script src="./assets/base.bundle.local.js"></script>
   <script>
-    (function configureUnnumberedCover() {
+    (function configureUnnumberedBackCover() {
       var nav = document.getElementById("nav-container");
       function update() {
         var current = nav.querySelector(".order-3 > span:first-child");
-        if (current && current.textContent.trim() === "0") current.textContent = "Jalada";
+        if (current && current.textContent.trim() === "0") current.textContent = "Jalada la nyuma";
         document.querySelectorAll("button, [aria-label]").forEach(function (element) {
           var label = element.getAttribute("aria-label") || "";
           var isSignToggle = element.tagName === "BUTTON" &&
