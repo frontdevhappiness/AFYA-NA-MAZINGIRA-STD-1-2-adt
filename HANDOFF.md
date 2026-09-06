@@ -79,6 +79,14 @@ Then read these files before editing:
 - The images in `index.html` are now presentational; the existing hidden text remains the reading source.
 - Page 1 Swahili number narration audio was corrected.
 
+### Page 4 — Credits Narration (Awaiting Review)
+
+- The visible “FOR ONLINE READING ONLY” watermark no longer has a narration target.
+- Normal and Easy Read recordings for `pg004_n0005`, `pg004_n0012`, `pg004_n0022`, `pg004_n0027`, and `pg004_n0032` were regenerated on 2026-09-06.
+- Narration expands `Bw.` to “Bwana” and pronounces `DUCE` as “Dyuse”; printed abbreviations remain unchanged.
+- Seven versioned MP3 files serve the ten narration entries, with matching word timestamps and refreshed offline mappings.
+- Awaiting the user’s listening review, including confirmation of the intended `DUCE` pronunciation.
+
 ### Page 6 — Remove Unwanted “Namba ...” Narration
 
 Report requirement: remove the unwanted phrase about the class numbers being written in Roman numerals after the first introduction paragraph.
