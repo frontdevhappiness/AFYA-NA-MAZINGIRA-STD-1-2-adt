@@ -1442,13 +1442,13 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   position: relative;
   z-index: 1;
   display: flex;
-  flex: 0 1 44rem;
+  flex: 0 1 auto;
   align-items: center;
-  width: min(44rem, 100%);
+  width: min(34rem, 100%);
   max-width: 100%;
   aspect-ratio: 1042 / 302;
-  margin-left: -5rem;
-  padding: 0.75rem 4.5rem 0.75rem 38% !important;
+  margin-left: -3.25rem;
+  padding: 0.75rem 3rem 0.75rem min(13.6rem, 40%) !important;
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent url("../images/ui/safety-callout-transparent.png") center / contain no-repeat !important;
@@ -1466,7 +1466,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   width: 100%;
   margin: 0 !important;
   color: #292524 !important;
-  font-size: clamp(1rem, 0.92rem + 0.4vw, 1.28rem) !important;
+  font-size: clamp(1.1rem, 0.98rem + 0.72vw, 1.65rem) !important;
   line-height: 1.35 !important;
 }
 
@@ -1477,7 +1477,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
     width: 100%;
     min-height: 0;
     aspect-ratio: auto;
-    margin: -0.5rem 0 0 !important;
+    margin: -3.5rem 0 0 !important;
     padding: 1rem !important;
     border: 0.15rem dotted #0ea5b7 !important;
     border-radius: 1rem !important;
@@ -2094,6 +2094,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
 #content :is(
   div:has(> p[data-id="pg008_n0004"]),
   div:has(> p[data-id="pg010_n0008"]),
+  div:has(> p > span[data-id="pg012_n0010"]),
   div:has(> p[data-id="pg015_n0028"]),
   div:has(> p[data-id="pg016_n0016"]),
   div:has(> span[data-id="pg017_n0007"]),
@@ -2104,6 +2105,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   div:has(> p[data-id="pg042_n0018"]),
   div:has(> p[data-id="pg044_n0004"]),
   div:has(> p[data-id="pg050_n0004"]),
+  div:has(> p[data-id="pg054_n0007"]),
   div:has(> span[data-id="pg057_n0004"]),
   div:has(> p[data-id="pg062_n0017"]),
   div:has(> p[data-id="pg063_n0018"]),
@@ -2122,13 +2124,13 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   position: relative !important;
   z-index: 1;
   display: flex !important;
-  flex: 0 1 44rem !important;
+  flex: 0 1 auto !important;
   align-items: center !important;
-  width: min(44rem, 100%) !important;
+  width: min(34rem, 100%) !important;
   max-width: 100% !important;
   aspect-ratio: 1042 / 302;
-  margin: 0 !important;
-  padding: 0.75rem 4.5rem 0.75rem 38% !important;
+  margin: 0 0 0 -3.25rem !important;
+  padding: 0.75rem 3rem 0.75rem min(13.6rem, 40%) !important;
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent url("../images/ui/safety-callout-transparent.png") center / contain no-repeat !important;
@@ -2139,6 +2141,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
 #content :is(
   div:has(> p[data-id="pg008_n0004"]),
   div:has(> p[data-id="pg010_n0008"]),
+  div:has(> p > span[data-id="pg012_n0010"]),
   div:has(> p[data-id="pg015_n0028"]),
   div:has(> p[data-id="pg016_n0016"]),
   div:has(> span[data-id="pg017_n0007"]),
@@ -2149,6 +2152,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   div:has(> p[data-id="pg042_n0018"]),
   div:has(> p[data-id="pg044_n0004"]),
   div:has(> p[data-id="pg050_n0004"]),
+  div:has(> p[data-id="pg054_n0007"]),
   div:has(> span[data-id="pg057_n0004"]),
   div:has(> p[data-id="pg062_n0017"]),
   div:has(> p[data-id="pg063_n0018"]),
@@ -2163,13 +2167,14 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   div:has(> p > span[data-id="pg040_n0008"]),
   div:has(> p > span[data-id="pg051_n0004"]),
   div:has(> p > span[data-id="pg060_n0004"])
-) > [aria-hidden="true"] {
+) > :is([aria-hidden="true"], div.absolute) {
   display: none !important;
 }
 
 #content :is(
   [data-id="pg007_n0008"], [data-id="pg008_n0004"],
   [data-id="pg010_n0008"], [data-id="pg015_n0028"],
+  [data-id="pg012_n0010"],
   [data-id="pg016_n0016"], [data-id="pg017_n0007"],
   [data-id="pg019_n0004"], [data-id="pg022_n0022"],
   [data-id="pg025_n0004"], [data-id="pg027_n0004"],
@@ -2178,7 +2183,8 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   [data-id="pg035_n0005"], [data-id="pg036_n0012"],
   [data-id="pg040_n0008"], [data-id="pg042_n0018"],
   [data-id="pg044_n0004"], [data-id="pg050_n0004"],
-  [data-id="pg051_n0004"], [data-id="pg057_n0004"],
+  [data-id="pg051_n0004"], [data-id="pg054_n0007"],
+  [data-id="pg057_n0004"],
   [data-id="pg060_n0004"], [data-id="pg062_n0017"],
   [data-id="pg063_n0018"], [data-id="pg065_n0007"],
   [data-id="pg068_n0054"]
@@ -2192,7 +2198,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   color: #292524 !important;
   background: transparent !important;
   box-shadow: none !important;
-  font-size: clamp(0.95rem, 0.9rem + 0.38vw, 1.22rem) !important;
+  font-size: clamp(1.1rem, 0.98rem + 0.72vw, 1.65rem) !important;
   line-height: 1.35 !important;
   text-align: left !important;
 }
@@ -2228,6 +2234,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   #content :is(
     div:has(> p[data-id="pg008_n0004"]),
     div:has(> p[data-id="pg010_n0008"]),
+    div:has(> p > span[data-id="pg012_n0010"]),
     div:has(> p[data-id="pg015_n0028"]),
     div:has(> p[data-id="pg016_n0016"]),
     div:has(> span[data-id="pg017_n0007"]),
@@ -2238,6 +2245,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
     div:has(> p[data-id="pg042_n0018"]),
     div:has(> p[data-id="pg044_n0004"]),
     div:has(> p[data-id="pg050_n0004"]),
+    div:has(> p[data-id="pg054_n0007"]),
     div:has(> span[data-id="pg057_n0004"]),
     div:has(> p[data-id="pg062_n0017"]),
     div:has(> p[data-id="pg063_n0018"]),
@@ -2258,7 +2266,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
     width: 100% !important;
     min-height: 0;
     aspect-ratio: auto !important;
-    margin: 0 !important;
+    margin: -3.5rem 0 0 !important;
     padding: 1rem !important;
     border: 0.15rem dotted #0ea5b7 !important;
     border-radius: 1rem !important;
