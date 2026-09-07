@@ -511,7 +511,7 @@
   "pg033_n0012": "pg033_n0012.mp3",
   "pg030_im005": "pg030_im005.mp3",
   "pg029_n0004": "pg029_n0004.mp3",
-  "pg029_im002": "pg029_im002.mp3",
+  "pg029_im002": "pg051_im002.mp3",
   "pg032_n0012": "pg032_n0012.mp3",
   "pg031_n0012": "pg031_n0012.mp3",
   "pg031_n0014": "pg031_n0014.mp3",
@@ -2465,5 +2465,6 @@
   "pg008_im006_easy_read": "pg008_im006_description_20260907_v1.mp3",
   "pg008_im007_easy_read": "pg008_im007_description_20260907_v1.mp3",
   "pg021_tbl002_description": "pg021_tbl002_description_description_20260907_v1.mp3",
-  "pg021_tbl002_description_easy_read": "pg021_tbl002_description_description_20260907_v1.mp3"
+  "pg021_tbl002_description_easy_read": "pg021_tbl002_description_description_20260907_v1.mp3",
+  "pg029_im002_easy_read": "pg051_im002_easy_read.mp3"
 }

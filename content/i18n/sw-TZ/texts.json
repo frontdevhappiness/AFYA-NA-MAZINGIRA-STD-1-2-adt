@@ -476,7 +476,7 @@
   "pg028_sec002_ans_item-5": "kikata kucha",
   "pg028_sec002_ans_item-6": "taulo",
   "pg029_n0002": "Ninasafisha miguu na kukata kucha zangu.",
-  "pg029_im002": "Paka wa katuni amesimama na kuinua mkono kana kwamba anazungumza na mwanafunzi.",
+  "pg029_im002": "Picha ya paka wa katuni mwenye rangi ya kahawia akionesha kwa mkono.",
   "pg029_n0004": "Ninatumia vifaa hivi kusafisha miguu na kukata kucha zangu.",
   "pg030_n0003": "1",
   "pg030_n0004": "a",
@@ -2473,5 +2473,6 @@
   "pg008_im006_easy_read": "Imeoneshwa picha ya mswaki ukisugua meno ya juu.",
   "pg008_im007_easy_read": "Imeoneshwa picha ya mswaki ukisugua meno ya chini.",
   "pg021_tbl002_description": "Jedwali lina safu mbili za majibu. Katika safu ya kwanza, andika majina ya vifaa vya kusafisha nywele. Katika safu ya pili, andika majina ya vifaa visivyo vya kusafishia nywele.",
-  "pg021_tbl002_description_easy_read": "Jedwali lina safu mbili za majibu. Katika safu ya kwanza, andika majina ya vifaa vya kusafisha nywele. Katika safu ya pili, andika majina ya vifaa visivyo vya kusafishia nywele."
+  "pg021_tbl002_description_easy_read": "Jedwali lina safu mbili za majibu. Katika safu ya kwanza, andika majina ya vifaa vya kusafisha nywele. Katika safu ya pili, andika majina ya vifaa visivyo vya kusafishia nywele.",
+  "pg029_im002_easy_read": "Picha ya paka wa katuni mwenye rangi ya kahawia akionesha kwa mkono."
 }
