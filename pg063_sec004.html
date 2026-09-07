@@ -11,6 +11,31 @@
     <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./assets/fonts.css" rel="stylesheet">
     <link href="./assets/cat-callouts-v1.css" rel="stylesheet">
+<style>
+      #content .pg063-picture-grid > div > .order-1 {
+        width: 100%;
+        max-width: none !important;
+        height: 22rem;
+      }
+      #content .pg063-picture-grid > div > .order-1 img {
+        max-height: 100%;
+        object-fit: contain;
+      }
+      #content .pg063-picture-grid > div > p {
+        margin-left: 4.5rem;
+        width: calc(100% - 4.5rem);
+        max-width: none !important;
+        text-align: left;
+      }
+      @media (max-width: 1023px) {
+        #content .pg063-picture-grid > div > .order-1 {
+          height: auto;
+        }
+        #content .pg063-picture-grid > div > .order-1 img {
+          max-height: 24rem;
+        }
+      }
+    </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center">
@@ -32,7 +57,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-x-14 gap-y-12 max-lg:grid-cols-1 max-lg:gap-y-10">
+    <div class="pg063-picture-grid grid grid-cols-2 gap-x-14 gap-y-12 max-lg:grid-cols-1 max-lg:gap-y-10">
       <div class="flex flex-col items-start">
         <span data-id="pg063_n0020" class="sr-only">1</span>
         <p data-id="pg063_n0021" class="order-2 adt-body max-w-[320px] text-left text-gray-800 leading-relaxed">Tunaepuka kukanyaga vitu hatarishi ili tuwe salama.</p>
@@ -47,7 +72,7 @@
         <p data-id="pg063_n0024" class="order-2 adt-body max-w-[340px] text-left text-gray-800 leading-relaxed">Tunaepuka vitu hatarishi kwa kuvaa viatu na kusafisha mazingira ili tusiumie.</p>
         <div class="order-1 mb-4 flex w-full max-w-[290px] items-center gap-4">
           <div class="adt-h2 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cyan-500 font-bold text-yellow-300 shadow-lg">2</div>
-          <img data-id="pg063_im004" src="images/pg063_im004.jpg" alt="Imeonyeshwa picha ya mvulana aliyevaa viatu akisafisha mazingira kwa kutumia kifaa maalumu ili asiumie." class="min-w-0 flex-1 h-auto rounded-sm shadow-sm" style="max-width: 100%; height: auto;">
+          <img data-id="pg063_im004" src="images/pg063_im004.jpg" alt="Imeonyeshwa picha ya mtoto aliyevaa viatu akikata majani kwa kutumia fyekeo." class="min-w-0 flex-1 h-auto rounded-sm shadow-sm" style="max-width: 100%; height: auto;">
         </div>
       </div>
 
@@ -75,7 +100,7 @@
 
     <div class="relative z-50" id="interface-container"></div>
     <div class="relative z-50" id="nav-container"></div>
-    <script src="./assets/offline-preloader.js?v=merge42-v1"></script>
+    <script src="./assets/offline-preloader.js?v=pg063-description-prefix-v2"></script>
     <script src="./assets/scorm.js"></script>
     <script src="./assets/sign-language-sync.js?v=1"></script>
     <script src="./assets/base.bundle.local.js"></script>
