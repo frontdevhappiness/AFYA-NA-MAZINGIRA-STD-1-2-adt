@@ -44,5 +44,6 @@
     "theme",
     "iconSize",
     "reduceMotion"
-  ]
+  ],
+  "high2minCacheVersion": 1
 }
