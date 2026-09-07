@@ -1,0 +1,94 @@
+/* Cat dialogue: keep live text, narration IDs and the source-book colours. */
+#content#content [data-cat-callout] {
+  --cat-width: 8rem;
+  --cat-gap: 2rem;
+  display: grid !important;
+  grid-template-columns: var(--cat-width) minmax(0, 1fr) !important;
+  align-items: center !important;
+  justify-content: start !important;
+  gap: 0 var(--cat-gap) !important;
+  width: 100% !important;
+  max-width: 44rem !important;
+  margin-inline: auto !important;
+  isolation: isolate;
+}
+#content#content [data-cat-image-wrap],
+#content#content [data-cat-speech-wrap] { display: contents !important; }
+#content#content [data-cat-old-pointer] { display: none !important; }
+#content#content [data-cat-guide] {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  display: block !important;
+  width: var(--cat-width) !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-self: center !important;
+}
+#content#content [data-cat-speech] {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 0 !important;
+  padding: 1rem 1.25rem !important;
+  border: 2px dotted #0ea5b7 !important;
+  border-radius: 1rem !important;
+  background: #fff3b0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  transform: translateY(-0.75rem);
+  align-self: center !important;
+}
+/* The pointer overlaps the image's right edge and ends at the cat's mouth. */
+#content#content [data-cat-speech]::before,
+#content#content [data-cat-speech]::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: auto !important;
+  right: 100% !important;
+  top: 50% !important;
+  bottom: auto !important;
+  width: calc(var(--cat-gap) + var(--cat-width) * 0.3) !important;
+  height: 1.4rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  transform: translateY(-50%) !important;
+  background: #0ea5b7 !important;
+  pointer-events: none;
+}
+#content#content [data-cat-speech]::after {
+  height: 1.12rem !important;
+  margin-right: -2px !important;
+  background: #fff3b0 !important;
+}
+#content#content [data-cat-speech],
+#content#content [data-cat-speech] :is(p, span, [data-id]) {
+  font-size: 1.5rem !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+#content#content [data-cat-speech] > :is(p, span) {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+@media (max-width: 640px) {
+  #content#content [data-cat-callout] { --cat-width: 5rem; --cat-gap: 1.25rem; }
+  #content#content [data-cat-speech] { padding: 0.75rem !important; transform: translateY(-0.45rem); }
+  #content#content [data-cat-speech],
+  #content#content [data-cat-speech] :is(p, span, [data-id]) { font-size: 1.25rem !important; }
+}
