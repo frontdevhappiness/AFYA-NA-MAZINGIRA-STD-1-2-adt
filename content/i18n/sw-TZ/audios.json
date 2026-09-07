@@ -2523,5 +2523,9 @@
   "pg072_refnum6": "pg009_n0011.mp3",
   "pg072_refnum6_easy_read": "pg009_n0011.mp3",
   "pg072_refnum7": "pg009_n0014.mp3",
-  "pg072_refnum7_easy_read": "pg009_n0014.mp3"
+  "pg072_refnum7_easy_read": "pg009_n0014.mp3",
+  "cover_description": "cover_description_description_20260907_v1.mp3",
+  "cover_description_easy_read": "cover_description_description_20260907_v1.mp3",
+  "back_cover_description": "back_cover_description_description_20260907_v1.mp3",
+  "back_cover_description_easy_read": "back_cover_description_description_20260907_v1.mp3"
 }
