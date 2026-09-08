@@ -1770,7 +1770,7 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   background: transparent url("../images/ui/shughuli-header-transparent.png") center / 100% 100% no-repeat !important;
   box-shadow: none !important;
   transform: none !important;
-  font-size: clamp(1rem, 0.92rem + 0.55vw, 1.45rem) !important;
+  font-size: clamp(1.125rem, 0.8rem + 1.1vw, 1.5rem) !important;
   font-style: italic !important;
   font-weight: 700 !important;
   line-height: 1 !important;
@@ -1881,14 +1881,14 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   max-width: 58rem !important;
   aspect-ratio: 1560 / 215;
   margin: 0 !important;
-  padding: 0.3% 62% 1.2% 7% !important;
+  padding: 3% 62% 0 11% !important;
   border: 0 !important;
   border-radius: 0 !important;
   color: #087f8f !important;
   background: transparent url("../images/ui/maswali-header-transparent.png") center / 100% 100% no-repeat !important;
   box-shadow: none !important;
   transform: none !important;
-  font-size: clamp(1rem, 0.94rem + 0.5vw, 1.4rem) !important;
+  font-size: clamp(1.125rem, 0.8rem + 1.1vw, 1.5rem) !important;
   font-style: italic !important;
   font-weight: 700 !important;
   line-height: 1 !important;
@@ -2061,13 +2061,15 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
   background: transparent url("../images/ui/orange-title-banner.png") center / 100% 100% no-repeat !important;
   box-shadow: none !important;
   transform: none !important;
-  font-size: clamp(0.95rem, 0.9rem + 0.32vw, 1.18rem) !important;
+  font-size: clamp(1.125rem, 0.8rem + 1.1vw, 1.5rem) !important;
   font-style: italic !important;
   font-weight: 700 !important;
   line-height: 1.1 !important;
   text-align: left !important;
   word-spacing: 0.32rem !important;
-  white-space: nowrap !important;
+  white-space: normal !important;
+  flex-wrap: wrap !important;
+  min-height: 3.25rem;
 }
 
 #content :is(
@@ -2347,4 +2349,59 @@ body:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) main::a
     line-height: 1.15 !important;
     white-space: nowrap !important;
   }
+}
+
+/* PDF reference: AFYA NA MAZINGIRA STD 1, page 11. Body copy and
+   question labels share a 16 pt size. Scope this scale to book content. */
+#content:has([data-section-id^="pg"]):not(:has([data-section-id^="pg001_"])) {
+  --adt-body-size: clamp(1.125rem, 0.8rem + 1.1vw, 1.5rem);
+  --adt-table-size: clamp(1rem, 0.8rem + 0.8vw, 1.25rem);
+  --adt-text-leading: 1.4;
+  max-width: 60rem;
+}
+
+/* Keep the copyright page's smaller type and compact paragraph groups. */
+#content:has([data-section-id="pg002_sec001"]) {
+  --adt-body-size: clamp(1rem, 0.8rem + 0.6vw, 1.1875rem);
+}
+#content [data-section-id="pg002_sec001"] > .space-y-14 {
+  display: grid;
+  gap: 1.75rem;
+}
+#content [data-section-id="pg002_sec001"] > .space-y-14 > * {
+  margin-block: 0;
+}
+
+/* Page 11: align the question panel with its heading; keep answer fields. */
+#content [data-section-id="pg011_sec001"] > div:last-child {
+  padding-top: 0;
+}
+#content [data-section-id="pg011_sec001"] > div:last-child > div {
+  border-width: 1px;
+  border-radius: 1.25rem;
+  background: #ffffcf;
+  box-shadow: none;
+}
+
+/* Page 11 activity: one continuous pink frame, as in the printed page. */
+#content [data-section-id="pg011_sec002"] > div:nth-child(2) {
+  margin-bottom: 0;
+  border: 1px solid #ec008c;
+  border-bottom: 0;
+  border-radius: 1.25rem 1.25rem 0 0;
+  box-shadow: none;
+}
+#content [data-section-id="pg011_sec002"] > div:nth-child(3) {
+  border: 1px solid #ec008c;
+  border-top: 0;
+  border-radius: 0 0 1.25rem 1.25rem;
+  box-shadow: none;
+  padding-top: 0.75rem;
+}
+#content [data-section-id="pg011_sec002"] .grid > div > div:first-child {
+  width: min(100%, 17rem);
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #ff7900;
+  background: #ffffe5;
+  box-shadow: none;
 }

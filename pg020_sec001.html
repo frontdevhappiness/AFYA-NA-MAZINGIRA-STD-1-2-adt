@@ -11,6 +11,7 @@
     <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./assets/fonts.css" rel="stylesheet">
 <link rel="stylesheet" href="./assets/sign-language-video.css">
+    <link href="./assets/book-banners.css" rel="stylesheet">
 </head>
 
 <body class="min-h-screen flex items-center justify-center">
@@ -46,7 +47,7 @@
         <div class="absolute right-0 bottom-8 z-10 w-[48%] max-lg:w-[55%] max-sm:static max-sm:w-full">
           <img src="images/pg020_im010_seg004_v1.png" alt="" role="presentation" aria-hidden="true" class="w-full h-auto object-contain rounded-[1.75rem]" style="max-width: 100%; height: auto;">
           <div class="sr-only">
-            <h1 class="adt-h3"><span data-id="pg020_n0015">Wimbo</span></h1>
+            <h1 class="adt-h3 book-banner-wrap"><span data-id="pg020_n0015" class="book-banner book-banner--song">Wimbo</span></h1>
             <p class="adt-body"><span data-id="pg020_n0016">Mimi napenda nywele zangu.</span></p>
             <p class="adt-body"><span data-id="pg020_n0017">Naziosha kwa maji na sabuni.</span></p>
             <p class="adt-body"><span data-id="pg020_n0018">Nazipaka mafuta zipendeze.</span></p>
@@ -56,15 +57,15 @@
       </div>
     </div>
 
-    <div>
-      <div class="mb-3 flex items-center gap-3 max-sm:gap-2">
-        <div class="h-10 w-10 shrink-0 rounded-full border-[6px] border-cyan-400 bg-white"></div>
-        <div class="rounded-r-full rounded-l-2xl bg-cyan-100 px-8 py-2 max-sm:px-5">
-          <h2 class="adt-h3 text-left font-bold text-cyan-700"><span data-id="pg020_n0021">Swali</span></h2>
+    <div class="book-question-frame book-question-frame--questions">
+      <div class="mb-3 flex items-center gap-3 max-sm:gap-2 book-banner-shell book-question-heading-shell">
+        <div class="h-10 w-10 shrink-0 rounded-full border-[6px] border-cyan-400 bg-white book-banner-art book-question-body"></div>
+        <div class="rounded-r-full rounded-l-2xl bg-cyan-100 px-8 py-2 max-sm:px-5 book-banner-shell book-question-heading-shell">
+          <h2 class="adt-h3 text-left font-bold text-cyan-700 book-banner-wrap"><span data-id="pg020_n0021" class="book-banner book-banner--questions">Swali</span></h2>
         </div>
-        <div class="h-4 flex-1 rounded-full bg-cyan-500"></div>
+        <div class="h-4 flex-1 rounded-full bg-cyan-500 book-banner-art"></div>
       </div>
-      <div class="rounded-[1.75rem] bg-yellow-50 p-5 shadow-sm ring-1 ring-cyan-300">
+      <div class="rounded-[1.75rem] bg-yellow-50 p-5 shadow-sm ring-1 ring-cyan-300 book-plain-question-card">
         <p class="adt-body text-left text-neutral-800 leading-relaxed"><span data-id="pg020_n0023">Taja vifaa vya kusafishia nywele ulivyosikia au ulivyovibaini kwenye wimbo.</span></p>
         <textarea rows="4" class="mt-4 min-h-32 w-full resize-y rounded-2xl border-2 border-cyan-300 bg-white p-4 text-neutral-800 outline-none focus:border-cyan-500" data-aria-id="aria-1-0-0" aria-label="Jibu kuhusu vifaa vya kusafishia nywele vilivyotajwa kwenye wimbo" tabindex="0"></textarea>
       </div>

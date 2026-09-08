@@ -1,0 +1,562 @@
+/* Shared live-text banners, based on the source PDF (pages 7, 10, 11, 40).
+   Only presentation lives here. IDs, translations and media hooks stay in HTML.
+   The doubled content ID deliberately supersedes legacy page-specific artwork. */
+#content#content .book-banner-wrap,
+#content#content .book-chapter-shell {
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  clip: auto !important;
+  clip-path: none !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+#content#content .book-banner-wrap::before,
+#content#content .book-banner-wrap::after,
+#content#content .book-banner-art {
+  display: none !important;
+}
+#content#content .book-banner-wrap:has(> .book-banner) {
+  margin-block: 0.5rem 1.25rem !important;
+}
+#content#content .book-banner {
+  position: relative !important;
+  isolation: isolate;
+  inset: auto !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 0 !important;
+  padding: 0.4em 0.85em !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  clip: auto !important;
+  clip-path: none !important;
+  overflow: visible !important;
+  color: #fff !important;
+  font-family: var(--adt-font-book) !important;
+  font-size: clamp(1.125rem, 0.8rem + 1.1vw, 1.5rem) !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  white-space: normal !important;
+  text-align: left !important;
+  text-indent: 0 !important;
+}
+/* Keep read-aloud word spans in their normal reading order. No last-child
+   positioning: headings work both before and after word highlighting starts. */
+#content#content .book-banner > span,
+#content#content .book-banner [data-word-index] {
+  position: static !important;
+  inset: auto !important;
+  display: inline !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  font: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+}
+/* Questions: pale cyan tab, circular left edge and a thin teal continuation. */
+#content#content .book-banner-wrap:has(> .book-banner--questions) {
+  border-bottom: 0.3rem solid #00aab7 !important;
+  border-radius: 0 0 0.3rem 0 !important;
+  margin-top: 1rem !important;
+}
+#content#content .book-banner--questions {
+  min-width: 8.5em !important;
+  padding: 0.25em 1.2em 0.25em 2.8em !important;
+  color: #008d9a !important;
+  background: #cceeee !important;
+  border-radius: 1.5em 1.1em 1.1em 1.5em !important;
+}
+#content#content .book-banner--questions::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1.65em;
+  height: 1.65em;
+  border: 0.25em solid #58c8cb;
+  border-right-color: #00aab7;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateY(-50%);
+}
+#content#content .book-banner--questions::after {
+  content: "";
+  position: absolute;
+  top: -0.3em;
+  left: 1.25em;
+  width: 4em;
+  height: 0.35em;
+  border-radius: 1em;
+  background: #50bec1;
+  box-shadow: 4.35em 0 0 -0.03em #50bec1;
+}
+/* Lesson strips retain the orange tab and a fine line along the baseline. */
+#content#content .book-banner-wrap:has(> .book-banner--lesson) {
+  border-bottom: 1px solid #ff5722 !important;
+}
+#content#content .book-banner--lesson {
+  padding: 0.2em 0.8em !important;
+  background: #fa5c20 !important;
+  border-radius: 0.3em 1em 0.3em 0.75em !important;
+  box-shadow: inset 0 0.12em 0 #ffae7a !important;
+}
+/* Exercise and activity tabs size to their live label, including its number.
+   Decoration sits behind text, so there is no empty, separately positioned
+   number slot when read-aloud is off. */
+#content#content .book-banner--exercise,
+#content#content .book-banner--activity {
+  white-space: nowrap !important;
+}
+#content#content .book-banner--exercise::before,
+#content#content .book-banner--activity::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 0.35em;
+  background: #19b9b7;
+  border: 1px solid #00aab7;
+}
+#content#content .book-banner--activity::before {
+  border: 2px solid #fff;
+  border-radius: 0.8em 0.6em 0.8em 0.6em;
+  background: #ff3676;
+  box-shadow: -0.2em 0.2em 0 #d1d1d1;
+  transform: skewX(-8deg);
+}
+#content#content .book-banner--activity::after {
+  content: "";
+  position: absolute;
+  left: 38%;
+  bottom: -0.38em;
+  width: 0.6em;
+  height: 0.6em;
+  background: #ff3676;
+  border-bottom: 2px solid white;
+  transform: skewY(-25deg);
+  z-index: -1;
+}
+/* Colour the final numeral without adding or duplicating any text.
+   Padding and ch units keep the colour boundary in the preceding space. */
+#content#content .book-banner--numbered {
+  padding-right: 0.75em !important;
+  word-spacing: 0.18em !important;
+  background-image: linear-gradient(to left, #008d9a 0 1.35em, white 1.35em) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
+}
+#content#content .book-banner--exercise.book-banner--numbered::before {
+  background: linear-gradient(to left, white 0 1.35em, #19b9b7 1.35em) !important;
+}
+#content#content .book-banner--activity.book-banner--numbered {
+  background-image: linear-gradient(to left, #ce1558 0 var(--book-number-band, 1.35em), white var(--book-number-band, 1.35em)) !important;
+}
+#content#content .book-banner--activity.book-banner--numbered::before {
+  background: radial-gradient(circle at calc(100% - 1em) 50%, #fff000 0 0.7em, transparent 0.73em), #ff3676 !important;
+}
+#content#content .book-banner--numbered > span,
+#content#content .book-banner--numbered [data-word-index] {
+  color: #fff !important;
+}
+#content#content .book-banner--numbered > [data-word-index]:last-child {
+  color: #008d9a !important;
+}
+#content#content .book-banner--activity.book-banner--numbered > [data-word-index]:last-child {
+  color: #ce1558 !important;
+}
+/* Preserve the three banners whose label and numeral already use two IDs. */
+#content#content .book-banner-split {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap;
+  width: fit-content !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 0.5rem 0 1.25rem !important;
+  padding: 0 !important;
+  border: 1px solid #00aab7 !important;
+  border-radius: 0.4em !important;
+  background: #19b9b7 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+#content#content .book-banner-split-inner { display: contents !important; }
+#content#content .book-banner-number {
+  position: static !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0.4em 0.7em !important;
+  background: #fff !important;
+  color: #008d9a !important;
+  font-size: clamp(1.125rem, 0.8rem + 1.1vw, 1.5rem) !important;
+  line-height: 1.25 !important;
+}
+#content#content .book-banner-split--activity { background: #ff3676 !important; border-color: #ff3676 !important; }
+#content#content .book-banner-split--activity .book-banner-number { background: #fff000 !important; color: #ce1558 !important; border-radius: 50%; }
+/* Remove fixed-height full-frame artwork; panels expand with answers and text. */
+#content#content .book-banner-panel {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 1rem 0 !important;
+  padding: 1rem !important;
+  border: 1px solid #00aab7 !important;
+  border-radius: 1rem !important;
+  background: #fff !important;
+}
+#content#content .book-banner-panel-content {
+  position: static !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin-top: 1rem !important;
+}
+#content#content .book-banner-split > .book-banner-panel-content { flex-basis: 100%; }
+/* Chapter openers: turquoise frame, yellow title and inset cream subtitle. */
+#content#content .book-chapter {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 0 1.75rem !important;
+  padding: 0.7rem 1.5rem 0 !important;
+  clip: auto !important;
+  clip-path: none !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  border-radius: 0 0 0.65rem 0.65rem !important;
+  background: #00aab7 !important;
+  box-shadow: inset 0 0.25rem 0 #86d8dc, 0 0.2rem 0 #00717b !important;
+}
+#content#content .book-banner--chapter {
+  width: 100% !important;
+  padding: 0.2em 0.25em 0.5em !important;
+  font-size: clamp(1.75rem, 1.1rem + 2vw, 2.75rem) !important;
+  color: #fff000 !important;
+  text-align: center !important;
+  font-style: normal !important;
+}
+#content#content .book-chapter-subtitle-wrap { display: contents !important; }
+#content#content .book-chapter-subtitle {
+  display: block !important;
+  position: relative !important;
+  width: 80% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0.65em 0.5em !important;
+  border-radius: 0.75em 0.75em 0.5em 0.5em !important;
+  color: #ec008c !important;
+  background: #ffffb5 !important;
+  box-shadow: 0 0.18rem 0 #afd19d, 0 -0.18rem 0.2rem #006b73 !important;
+  font-size: clamp(1.35rem, 1rem + 1.2vw, 1.9rem) !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  transform: translateY(0.5rem);
+}
+#content#content .book-banner--song {
+  margin: 0 auto 1rem !important;
+  padding: 0.25em 1.25em !important;
+  color: #ec008c !important;
+  background: #fff6ce !important;
+  border-block: 2px solid #e3b457 !important;
+  border-radius: 0.3em !important;
+}
+@media (max-width: 640px) {
+  #content#content .book-banner { font-size: 1.125rem !important; }
+  #content#content .book-banner--chapter { font-size: 1.75rem !important; }
+  #content#content .book-chapter { padding-inline: 0.75rem !important; }
+  #content#content .book-chapter-subtitle { width: 90% !important; }
+}
+@media (forced-colors: active) {
+  #content#content .book-banner { color: CanvasText !important; background: Canvas !important; }
+  #content#content .book-banner > span { color: CanvasText !important; }
+}
+/* Outer page gutters remain intact; only their old banner decoration clears. */
+#content#content .book-banner-shell {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+#content#content .book-banner-wrap { isolation: isolate; }
+#content#content .book-banner--numbered { isolation: auto; z-index: auto !important; }
+#content#content .book-banner--two-digits {
+  /* Widen the existing colour band; do not compete with the activity rule. */
+  --book-number-band: 1.85em;
+}
+#content#content .book-banner--activity.book-banner--two-digits::before {
+  background: radial-gradient(circle at calc(100% - 1.25em) 50%, #fff000 0 0.7em, transparent 0.73em), #ff3676 !important;
+}
+#content#content .book-banner--song { min-width: max-content !important; }
+/* Restore the larger book corner on lesson pages; scale it down on phones. */
+body:has(.book-banner) main::before {
+  width: clamp(4.5rem, 13vw, 10.5rem) !important;
+  height: clamp(6rem, 16vw, 12.5rem) !important;
+}
+/* Clear the old full-width colour band outside chapter frames. */
+#content#content [data-section-id="pg040_sec001"] > div:first-child {
+  background: none !important;
+  box-shadow: none !important;
+}
+#content#content .book-banner-split .book-banner::before,
+#content#content .book-banner-split .book-banner::after { display: none !important; }
+#content#content .book-banner-split--activity {
+  border: 2px solid white !important;
+  border-radius: 0.7em !important;
+  box-shadow: -0.2em 0.2em 0 #d1d1d1 !important;
+}
+#content#content .book-banner-split--activity .book-banner-number {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 1.4em !important;
+  height: 1.4em !important;
+  padding: 0 !important;
+  margin-right: 0.45em !important;
+  border-radius: 50% !important;
+}
+#content#content .book-banner [data-word-index].bg-yellow-300 {
+  color: #231f20 !important;
+}
+
+/* One activity frame and tab placement on every Shughuli page. */
+#content#content .book-activity-frame {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  box-sizing: border-box;
+  margin: 2.5rem 0 1.5rem !important;
+  padding: 1.25rem !important;
+  border: 2px solid #ec008c !important;
+  border-radius: 1.1rem !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+#content#content .book-activity-heading-shell {
+  display: contents !important;
+}
+#content#content .book-activity-frame .book-banner-wrap:has(> .book-banner--activity),
+#content#content .book-activity-frame .book-banner-split--activity {
+  position: relative !important;
+  inset: auto !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: -2.65rem 0 1.25rem !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+#content#content .book-activity-frame .book-banner-split-inner {
+  display: contents !important;
+}
+#content#content .book-activity-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#content#content .book-banner--activity.book-banner--numbered {
+  word-spacing: 0.55em !important;
+}
+#content#content .book-banner--activity::before {
+  border-radius: 0.65em !important;
+  transform: none !important;
+}
+#content#content .book-banner-split--activity {
+  gap: 0.45em;
+  border-radius: 0.65em !important;
+}
+#content#content .book-banner-split--activity .book-banner--activity {
+  padding-right: 0.35em !important;
+}
+#content#content .book-banner-split--activity::after {
+  content: "";
+  position: absolute;
+  left: 38%;
+  bottom: -0.38em;
+  width: 0.6em;
+  height: 0.6em;
+  background: #ff3676;
+  border-bottom: 2px solid white;
+  transform: skewY(-25deg);
+}
+@media (max-width: 640px) {
+  #content#content .book-activity-frame { padding: 1rem !important; }
+  #content#content .book-activity-frame .book-banner-wrap:has(> .book-banner--activity),
+  #content#content .book-activity-frame .book-banner-split--activity {
+    margin-top: -2.1rem !important;
+  }
+}
+#content#content .book-banner-split--activity {
+  font-size: clamp(1.125rem, 0.8rem + 1.1vw, 1.5rem);
+  gap: 0.2em;
+}
+#content#content .book-banner-split--activity .book-banner--activity {
+  padding-block: calc(0.4em - 2px) !important;
+  padding-right: 0.15em !important;
+  word-spacing: 0.55em !important;
+}
+
+/* Maswali/Swali and Zoezi each use one frame, including their answer areas. */
+#content#content .book-frame-shell {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+#content#content .book-question-frame {
+  position: relative !important;
+  display: block !important;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 2.5rem 0 1.5rem !important;
+  padding: 1.25rem !important;
+  border: 2px solid #00aab7 !important;
+  border-radius: 1.1rem !important;
+  background: #ffffcf !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+#content#content .book-question-frame--exercise { background: #fff !important; }
+#content#content .book-question-heading-shell { display: contents !important; }
+#content#content .book-question-frame .book-banner-wrap:has(> .book-banner--questions),
+#content#content .book-question-frame .book-banner-wrap:has(> .book-banner--exercise),
+#content#content .book-question-frame .book-banner-split--exercise {
+  position: relative !important;
+  inset: auto !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: -2.65rem 0 1.25rem !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+#content#content .book-question-frame .book-banner-wrap:has(> .book-banner--questions) {
+  border-bottom: 0 !important;
+}
+#content#content .book-question-frame .book-banner-split-inner { display: contents !important; }
+#content#content .book-question-body {
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#content#content .book-banner-split--exercise {
+  font-size: clamp(1.125rem, 0.8rem + 1.1vw, 1.5rem);
+  border-radius: 0.35em !important;
+  overflow: hidden !important;
+}
+#content#content .book-banner-split--exercise .book-banner {
+  padding-block: calc(0.4em - 1px) !important;
+}
+#content#content .book-banner-split--exercise .book-banner-number {
+  min-width: 0 !important;
+  padding: calc(0.4em - 1px) 0.5em !important;
+  border: 0 !important;
+}
+@media (max-width: 640px) {
+  #content#content .book-question-frame { padding: 1rem !important; }
+  #content#content .book-question-frame .book-banner-wrap:has(> .book-banner--questions),
+  #content#content .book-question-frame .book-banner-wrap:has(> .book-banner--exercise),
+  #content#content .book-question-frame .book-banner-split--exercise {
+    margin-top: -2.1rem !important;
+  }
+}
+/* Clear old inner card shells; retain table borders and answer controls. */
+#content#content .book-question-frame > div:not(.book-banner-number):not(:has(.book-banner)):not(:has(table)) {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#content#content [data-section-id="pg011_sec001"].book-frame-shell {
+  padding-inline: clamp(1rem, 3vw, 2rem) !important;
+}
+
+/* Question rows inherit the frame colour, including formerly green cards. */
+#content#content .book-plain-question-card {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#content#content .book-question-number,
+#content#content .book-question-number [data-word-index] {
+  color: #231f20 !important;
+  font-size: var(--adt-body-size) !important;
+  font-weight: 400 !important;
+  line-height: var(--adt-text-leading) !important;
+}
+/* A split label's numeral is content, not an inner card shell. */
+#content#content .book-banner-split--exercise > .book-banner-number {
+  background: #fff !important;
+  color: #008d9a !important;
+  align-self: stretch;
+  display: flex !important;
+  align-items: center;
+}
+/* Plain span-based questions use the same body size as paragraph questions. */
+#content#content .book-question-frame {
+  font-size: var(--adt-body-size) !important;
+  line-height: var(--adt-text-leading) !important;
+}
+#content#content .book-plain-question-card + .book-plain-question-card {
+  margin-top: 1.5rem !important;
+}
