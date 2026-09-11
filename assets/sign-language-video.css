@@ -1,0 +1,40 @@
+/* Keep the native sign-language player reachable and touch-draggable. */
+[data-sign-language-player] {
+  --sign-language-handle-height: 24px;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 59 !important;
+  max-width: calc(var(--sign-language-viewport-width, 100vw) - 1rem) !important;
+  max-height: calc(var(--sign-language-viewport-height, 100dvh) - 1rem) !important;
+}
+[data-sign-language-player] video {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: calc(var(--sign-language-viewport-height, 100dvh) - 1rem - var(--sign-language-handle-height)) !important;
+  object-fit: contain !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+[data-sign-language-drag-handle] {
+  flex: 0 0 var(--sign-language-handle-height) !important;
+  touch-action: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+@media (max-width: 767.98px) {
+  [data-sign-language-player] {
+    --sign-language-handle-height: 44px;
+  }
+  [data-sign-language-drag-handle] { min-height: 44px !important; }
+}
+
+[data-sign-language-player] video:fullscreen {
+  height: 100% !important;
+  max-height: none !important;
+}
