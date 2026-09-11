@@ -1,5 +1,11 @@
 # AFYA NA MAZINGIRA STD 1 — Work Handoff
 
+> Current release note (2026-09-11): this repository is the standalone website
+> root with 102 live pages. See `README.md` and `DEPLOYMENT.md` for the cleaned
+> file inventory, preserved narration/media behavior, and local release checks.
+> The dated work log and old paths below are historical context, not the current
+> repository state. Do not recreate removed standalone quizzes or legacy bundles.
+
 Updated: 2026-08-09
 
 ## Purpose

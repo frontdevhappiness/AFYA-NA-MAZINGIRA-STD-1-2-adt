@@ -2,6 +2,21 @@
 
 This document describes the structure of this Accessible Digital Textbook (ADT) bundle. Use it to orient yourself when doing post-processing.
 
+## Current standalone release (2026-09-11)
+
+This repository itself is the website root; there is no nested `adt/` directory.
+The reading order now contains **102 pages**, including front cover 1 and back
+cover 102. Old standalone quizzes and superseded section redirects were removed
+as unused; the live in-page exercises remain. Use `README.md` and `DEPLOYMENT.md`
+for current release commands and checks. The generated-layout examples below are
+historical and must not override the current manifests or stable media IDs.
+
+The active runtime is `assets/base.bundle.local.js`. The unused legacy minified
+bundle and its source map were removed. Do not regenerate or edit compiled runtime
+or stylesheet code for ordinary content changes. Run `node scripts/prepare-release.cjs`
+after HTML/configuration/localization edits, then `node scripts/verify-release.cjs`.
+Do not create SCORM/ZIP export directories or push unless separately requested.
+
 ## About This Book
 
 **Afya na Mazingira** — Hiki ni kitabu cha mwanafunzi cha somo la Afya na Mazingira kwa Darasa la Kwanza, kinacholenga kuwafundisha watoto wadogo kuhusu usafi wa mwili, utunzaji wa mavazi, kujiepusha na vitu, wadudu na mazingira hatarishi, pamoja na kutambua alama za usalama. Kimetungwa kwa kiwango cha shule ya msingi ya awali nchini Tanzania na kimeandaliwa na Taasisi ya Elimu Tanzania, hivyo asili yake ni Tanzania, na kimeandikwa kwa lugha ya Kiswahili. Kwa ujumla, kitabu hiki kinatumia mbinu rahisi na shirikishi kama picha, nyimbo, hadithi, maswali, mazoezi na shughuli za vitendo ili kujenga maarifa ya msingi ya afya, usalama na utunzaji wa mazingira.

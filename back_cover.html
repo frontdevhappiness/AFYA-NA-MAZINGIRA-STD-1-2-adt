@@ -7,14 +7,13 @@
   <meta name="title-id" content="back_cover_sec001">
   <meta name="page-section-id" content="102">
   <link href="./content/tailwind_output.css" rel="stylesheet">
-  <link href="./assets/reader-runtime.css?v=responsive-media-v2" rel="stylesheet">
-  <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet">
-  <link href="./assets/fonts.css" rel="stylesheet">
+  <link href="./assets/reader-runtime.css?v=4-clean-release-20260911" rel="stylesheet">
+  <link href="./assets/libs/fontawesome/css/all.min.css?v=4-clean-release-20260911" rel="stylesheet">
+  <link href="./assets/fonts.css?v=4-clean-release-20260911" rel="stylesheet">
   <style>
     :root { --dock:var(--dock-height,96px); color-scheme:light; }
     html,body { margin:0; min-height:100%; }
     body { overflow-x:hidden; overflow-y:auto; background:#f0f8e8; }
-    [data-cover-hidden-sign-language] { display:none !important; }
     .cover-shell {
       box-sizing:border-box;
       display:grid;
@@ -36,8 +35,8 @@
       .back-cover { box-shadow:none; }
     }
   </style>
-    <link rel="stylesheet" href="./assets/mobile-sheet-drag.css?v=responsive-media-v1">
-    <link rel="stylesheet" href="./assets/sign-language-video.css?v=video-bounds-v1">
+  <link rel="stylesheet" href="./assets/mobile-sheet-drag.css?v=4-clean-release-20260911">
+  <link rel="stylesheet" href="./assets/sign-language-video.css?v=4-clean-release-20260911">
 </head>
 <body>
   <main id="content" class="cover-shell">
@@ -49,34 +48,12 @@
   </main>
   <div class="relative z-50" id="interface-container"></div>
   <div class="relative z-50" id="nav-container"></div>
-  <script src="./assets/offline-preloader.js?v=website-numbering-v1"></script>
-  <script src="./assets/scorm.js"></script>
-  <script src="./assets/sign-language-sync.js?v=1"></script>
-  <script src="./assets/media-playback-independence.js?v=responsive-media-v1"></script>
-  <script src="./assets/base.bundle.local.js?v=responsive-media-v1"></script>
-  <script src="./assets/sign-language-video.js?v=video-bounds-v1"></script>
-    <script src="./assets/mobile-sheet-drag.js?v=responsive-media-v1"></script>
-  <script>
-    (function configureBackCoverMedia() {
-      function update() {
-        document.querySelectorAll("button, [aria-label]").forEach(function (element) {
-          var label = element.getAttribute("aria-label") || "";
-          var isSignToggle = element.tagName === "BUTTON" &&
-            (/sign[- ]language|lugha ya ishara/i.test(label) || element.querySelector("svg.lucide-hand"));
-          var isSignPanelHandle = element.tagName !== "BUTTON" &&
-            /sign[- ]language|lugha ya ishara/i.test(label);
-          if (isSignToggle) element.setAttribute("data-cover-hidden-sign-language", "");
-          if (isSignPanelHandle) {
-            var panel = element.closest(".fixed") || element.parentElement;
-            if (panel) panel.setAttribute("data-cover-hidden-sign-language", "");
-          }
-        });
-      }
-      new MutationObserver(update).observe(document.documentElement, {
-        childList:true, subtree:true, characterData:true
-      });
-      update();
-    })();
-  </script>
+  <script src="./assets/offline-preloader.js?v=4-clean-release-20260911"></script>
+  <script src="./assets/scorm.js?v=4-clean-release-20260911"></script>
+  <script src="./assets/sign-language-sync.js?v=4-clean-release-20260911"></script>
+  <script src="./assets/media-playback-independence.js?v=4-clean-release-20260911"></script>
+  <script src="./assets/base.bundle.local.js?v=4-clean-release-20260911"></script>
+  <script src="./assets/sign-language-video.js?v=4-clean-release-20260911"></script>
+  <script src="./assets/mobile-sheet-drag.js?v=4-clean-release-20260911"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 {
   "title": "Afya na Mazingira",
-  "bundleVersion": "3-numbered-covers-website-numbering-v1-responsive-media-v3",
+  "bundleVersion": "4-clean-release-20260911",
   "languages": {
     "available": [
       "sw-TZ"
@@ -44,5 +44,6 @@
     "theme",
     "iconSize",
     "reduceMotion"
-  ]
+  ],
+  "high2minCacheVersion": 1
 }
