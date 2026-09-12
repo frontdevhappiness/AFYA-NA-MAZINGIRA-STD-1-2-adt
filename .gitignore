@@ -2,3 +2,6 @@
 __pycache__/
 .env
 .env.*
+
+# Personal reference guide; keep local rather than publishing to GitHub.
+/scripts/REUSABLE_KORE_TTS_GUIDE.md
