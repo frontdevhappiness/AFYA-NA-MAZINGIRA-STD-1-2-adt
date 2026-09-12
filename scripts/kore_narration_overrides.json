@@ -1,0 +1,22 @@
+{
+  "c": {"narration": "Kipengele c.", "context": "This is the letter label of a textbook exercise item."},
+  "d": {"narration": "Kipengele d.", "context": "This is the letter label of a textbook exercise item."},
+  "(b)": {"narration": "Kipengele b.", "context": "This is the letter label of a textbook exercise item."},
+  "C": {"narration": "Kipengele C.", "context": "This is the letter label of a textbook exercise item."},
+  "X": {"narration": "Alama X.", "context": "This transcript names a mark in a textbook exercise."},
+  "A.": {"narration": "Kipengele A.", "context": "This is the letter label of a textbook exercise item."},
+  "C.": {"narration": "Kipengele C.", "context": "This is the letter label of a textbook exercise item."},
+  "D. Kusugua miguu": {"narration": "Kipengele D. Kusugua miguu.", "context": "This is an answer option about washing feet in a personal hygiene lesson."},
+  "(c)": {"narration": "Kipengele c.", "context": "This is the letter label of a textbook exercise item."},
+  "(d)": {"narration": "Kipengele d.", "context": "This is the letter label of a textbook exercise item."},
+  "(e)": {"narration": "Kipengele e.", "context": "This is the letter label of a textbook exercise item."},
+  "(f)": {"narration": "Kipengele f.", "context": "This is the letter label of a textbook exercise item."},
+  "hatua-5": {"narration": "Hatua ya tano.", "context": "This labels the fifth step of a textbook activity."},
+  "(2)": {"narration": "Mbili.", "context": "This is the spoken number for a numbered textbook exercise label."},
+  "(4)": {"narration": "Nne.", "context": "This is the spoken number for a numbered textbook exercise label."},
+  "G": {"narration": "Herufi G.", "context": "This names a letter used in a textbook matching exercise."},
+  "H": {"narration": "Herufi H.", "context": "This names a letter used in a textbook matching exercise."},
+  "macho": {"narration": "Macho.", "context": "This is a Swahili glossary pronunciation: macho means eyes, the organs of sight."},
+  "hali ya kuwa bila hatari au madhara": {"narration": "Hali ya kuwa bila hatari au madhara.", "context": "This is a Swahili glossary definition of safety: the state of being free from danger or harm."},
+  "video": {"narration": "Video.", "context": "This is a glossary pronunciation of the Swahili word video, meaning a moving-picture recording."}
+}

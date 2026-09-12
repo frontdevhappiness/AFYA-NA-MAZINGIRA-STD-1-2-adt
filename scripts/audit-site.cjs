@@ -9,7 +9,8 @@ const json = file => JSON.parse(read(file));
 const files = [];
 function walk(dir = '') {
   for (const item of fs.readdirSync(path.join(root, dir), { withFileTypes: true })) {
-    if (item.name === '.git') continue;
+    // Local narration models, staging, and backups are not reader assets.
+    if (item.name === '.git' || (dir === '' && ['.kore-tts', '.revisions'].includes(item.name)) || item.name === '__pycache__') continue;
     assert(!item.isSymbolicLink(), `Review symbolic link before cleanup: ${dir}/${item.name}`);
     const file = path.posix.join(dir, item.name);
     if (item.isDirectory()) walk(file);

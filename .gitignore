@@ -1,0 +1,4 @@
+.kore-tts/
+__pycache__/
+.env
+.env.*
